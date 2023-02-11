@@ -1,8 +1,9 @@
+// eslint-disable-next-line 
 import logo from './logo.svg';
 import React, { useState } from 'react';
 import './App.css';
-import { Login } from './components/login';
-import { Register } from './components/register';
+import { Login } from './pages/login';
+import { Register } from './pages/register';
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
