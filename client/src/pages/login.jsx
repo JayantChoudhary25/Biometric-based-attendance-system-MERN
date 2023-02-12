@@ -1,81 +1,173 @@
-import React, {useState} from "react";
-import styled from 'styled-components'
+import React, { useState , useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import styled from 'styled-components';
+import "react-toastify/dist/ReactToastify.css"; 
+import axios from 'axios';
+import { loginRoute } from '../utils/APIRoutes';
+import Logo from "../assets/logo.svg";
 
-export const Login = (props) => {
-    const [email , setEmail] = useState('');
-    const [pass , setPass] = useState('');
+function Login() {
+  const navigate = useNavigate();
+  const [values,setValues] = useState({
+    username: "",
+    password: "",
+  });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email);
-    } 
+  useEffect(() => {
+    if(localStorage.getItem("chat-app-user")){
+    //   navigate("/");
+    }// eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
-    return(
-        <FormContainer>
-        <div className="auth-form-container">
-            <h2>LogIn</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
-            <label htmlfor="email">email</label>
-            <input 
-                value={email} 
-                onChange={(e)=> setEmail(e.target.value)} 
-                type="email" 
-                placeholder="youremail@gmail.com" 
-                id="email" 
-                name="email"
-            />
-            <label htmlfor="password">password</label>
-            <input 
-                value={pass} 
-                onChange={(e)=> setPass(e.target.value)} 
-                type="password" 
-                placeholder="********" 
-                id="password" 
-                name="password"
-            />
-            <button type="submit">LogIn</button>
+  const handleSubmit = async (event) =>{
+    event.preventDefault();
+    if(handleValidation()){
+      const {password, username} = values;
+      const {data}  = await axios.post(loginRoute,{
+        username,
+        password,
+      });
+      if(data.status === false){
+        toast.error(data.msg, toastOptions );
+      }
+      if(data.status === true){
+        localStorage.setItem('chat-app-user',JSON.stringify(data.user) );
+        navigate("/");  
+      }
+      
+    }
+  };
+
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+
+  const handleValidation = () => {
+    const {password, username} = values;
+
+    if(password === ""){
+      toast.error("Username & password is required.", toastOptions);
+      return false;
+    } else if (username === ""){
+      toast.error("Username & password is required.", toastOptions);
+      return false;
+    } else {
+      return true; 
+    }
+  };
+
+  const handleChange = (event) => {
+      setValues({...values, [event.target.name]:event.target.value })
+  };
+
+  return (
+    <>
+      <FormContainer>
+        <form onSubmit={(event)=> handleSubmit(event)}>
+          <div className='brand'>
+            <img src={Logo} alt='Logo' />
+            <h1>Login</h1>
+          </div>
+          
+          <input 
+          type="text" 
+          placeholder="Username" 
+          name='username' 
+          onChange={(e)=>handleChange(e)}
+          min="3"
+          />
+
+          <input 
+          type="password" 
+          placeholder="Password" 
+          name='password' 
+          onChange={ (e) =>handleChange(e)}
+          />
+
+          <button type='submit'>Login User</button>
+
+          <span>
+          Don't have an account? <Link to="/register" >Register</Link> 
+          </span>
         </form>
-        <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here</button>
-        </div>
-        </FormContainer>
-    )
+      </FormContainer>
+      <ToastContainer />
+    </>
+  )
 }
 
 const FormContainer = styled.div`
-    .auth-form-container, .login-form, .register-form{
-     display: flex;
-     flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    background-color: #EAFDFC;
+    .brand{
+        display: flex ;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+        img{
+            height: 5rem;
+        } 
+        h1{
+        color: black;
+        text-transform: uppercase;
+        }
     }
-
-    @media screen and (min-width: 600px){
-      .auth-form-container {
-        padding: 5rem;
-        border: 1px solid white;
-        border-radius: 10px;
-        margin: 0.5rem;
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: #BFEAF5;
+        border-radius: 2rem;
+        padding: 3rem 5rem;
+        input{
+        background-color: transparent;
+        padding: 1rem;
+        border: 0.1rem solid #997af0;
+        border-radius: 0.4rem;
+        color: black;
+        width: 100%;
+        font-size: 1rem;
+        &:focus {
+            border: 0.1rem solid #4e0eff;
+            outline : none;
+        }
+        }
+        button{
+        background-color: #997af0;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 0.4rem;
+        font-size: 1rem;
+        text-transform: uppercase;
+        transition: 0.4s ease-in-out;
+          &:hover{
+              background-color: #4e0eff ;
+          }
+        }
+        span{
+        color: black;
+        text-transform: uppercase;
+        a {
+            color: #4e0eff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        } 
       }
-    }
-    label {
-      text-align: left;
-      padding: 0.25rem 0;
-    }
-    input {
-      margin: 0.5rem 0;
-      padding: 1rem;
-      border: none;
-      border-radius: 10px;
-    }
-    button {
-      border: none;
-      background-color: white ;
-      padding: 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      color: #C66FBC;
-    }
-    .link-btn {
-      background: none;
-      color: white;
-      text-decoration: underline;
-    }
 `;
+
+export default Login;

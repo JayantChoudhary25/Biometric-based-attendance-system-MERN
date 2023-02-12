@@ -1,25 +1,15 @@
-// eslint-disable-next-line 
-import logo from './logo.svg';
-import React, { useState } from 'react';
-import './App.css';
-import { Login } from './pages/login';
-import { Register } from './pages/register';
+import React from 'react';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import Register from './pages/register';
+import Login from './pages/login';
 
-function App() {
-  const [currentForm, setCurrentForm] = useState('login');
-
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  }
-
+export default function App() {
   return (
-    <div className="App">
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
-      }
-
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/register" element={<Register /> }></Route>
+        <Route path="/login" element={<Login /> }></Route>     
+      </Routes>
+    </BrowserRouter>
+  ); 
 }
-
-export default App;

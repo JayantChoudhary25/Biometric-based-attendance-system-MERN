@@ -3,3 +3,5 @@ Install Backend Dependencies :- npm i express cors nodemon bcrypt mongoose mongo
 //
 
 Install frontend dependencies:- npm i react react-router-dom react-toastify styled-components axios
+
+color paette: https://colorhunt.co/palette/82aae391d8e4bfeaf5eafdfc
