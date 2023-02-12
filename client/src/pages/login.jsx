@@ -10,13 +10,13 @@ import Logo from "../assets/logo.svg";
 function Login() {
   const navigate = useNavigate();
   const [values,setValues] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   useEffect(() => {
     if(localStorage.getItem("user")){
-    //   navigate("/");
+      navigate("/");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
@@ -29,17 +29,16 @@ function Login() {
         email,
         password,
       });
-      
+      console.log(data);
       if(data.status === false){
         toast.error(data.msg, toastOptions );
       }
-      if(data.status === true){
+      if(data.success === true){
         localStorage.setItem('user',JSON.stringify(data.user) );
         navigate("/");  
       }}catch(error){
         console.log(error.response.data);
       }
-      
     }
   };
 
@@ -52,13 +51,13 @@ function Login() {
   };
 
   const handleValidation = () => {
-    const {password, username} = values;
+    const {password, email} = values;
 
     if(password === ""){
-      toast.error("Username & password is required.", toastOptions);
+      toast.error("Email & password is required.", toastOptions);
       return false;
-    } else if (username === ""){
-      toast.error("Username & password is required.", toastOptions);
+    } else if (email === ""){
+      toast.error("Email & password is required.", toastOptions);
       return false;
     } else {
       return true; 
@@ -79,11 +78,10 @@ function Login() {
           </div>
           
           <input 
-          type="text" 
+          type="email" 
           placeholder="Email" 
-          name='username' 
+          name='email' 
           onChange={(e)=>handleChange(e)}
-          min="3"
           />
 
           <input 

@@ -31,15 +31,15 @@ function Register() {
         email,
         password,
       });
-      if(data.status === false){
-        toast.error(data.msg, toastOptions );
-      }
       if(data.status === true){
         localStorage.setItem('user-data',JSON.stringify(data.user) );
-      }}catch(error){
+      }else{
+        toast.error(data.msg, toastOptions );
+      }
+    }catch(error){
         console.log(error.response.data);
       }
-      navigate("/");
+      navigate("/login");
     }
   };
 

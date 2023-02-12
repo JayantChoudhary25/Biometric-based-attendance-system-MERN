@@ -26,18 +26,15 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return next(new ErrorResponse("Please provide Email and Password", 400));
-  }
   try {
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      return next(new ErrorResponse("Invalid User Credentials", 401));
+      return res.json({msg:"Incorrect username or password.", status:false});
     }
     const isMatch = await user.matchPasswords(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("Invalid Credentials", 401));
+      return res.json({msg:"Incorrect username or password.", status:false});
     }
     sendToken(user, 200, res);
   } catch (error) {
@@ -120,5 +117,5 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ success: true, token });
+  res.status(statusCode).json({ success: true, token ,user});
 };
