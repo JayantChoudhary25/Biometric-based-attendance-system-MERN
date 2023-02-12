@@ -6,6 +6,10 @@ import Dashboard from './pages/dashboard';
 import Teacher from './pages/teacher';
 import Student from './pages/student';
 import Biometric from './pages/biometric';
+import GetAllTeacher from './pages/get_all_teacher';
+import AddTeacher from './pages/add_teacher';
+import UpdateTeacher from './pages/update_teacher';
+import DeleteTeacher from './pages/delete_teacher';
 
 export default function App() {
   return (
@@ -16,7 +20,11 @@ export default function App() {
         <Route path="/login" element={<Login /> }></Route>
         <Route path='/teacher' element={<Teacher/>}/>
         <Route path='/student' element={<Student/>}/>
-        <Route path='/bio' element={<Biometric/>}/>     
+        <Route path='/bio' element={<Biometric/>}/>
+        <Route path='/teacher/get_all_teacher' element={<GetAllTeacher/>}/>
+        <Route path='/teacher/add_teacher' element={<AddTeacher/>}/>
+        <Route path='/teacher/update_teacher' element={<UpdateTeacher/>}/>
+        <Route path='/teacher/delete_teacher' element={<DeleteTeacher/>}/>
       </Routes>
     </BrowserRouter>
   ); 
