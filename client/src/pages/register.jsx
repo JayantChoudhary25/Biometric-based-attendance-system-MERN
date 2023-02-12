@@ -18,7 +18,7 @@ function Register() {
 // eslint-disable-next-line
   useEffect(() => {
     if(localStorage.getItem("user")){
-      navigate("/register");
+      navigate("/");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
