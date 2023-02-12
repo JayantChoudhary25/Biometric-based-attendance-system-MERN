@@ -16,7 +16,7 @@ function Login() {
 
   useEffect(() => {
     if(localStorage.getItem("user")){
-      navigate("/");
+      navigate("/login");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
