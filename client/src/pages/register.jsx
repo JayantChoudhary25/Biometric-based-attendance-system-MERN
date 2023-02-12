@@ -17,36 +17,36 @@ function Register() {
   });
 // eslint-disable-next-line
   useEffect(() => {
-    if(localStorage.getItem("chat-app-user")){
-    //   navigate("/");
+    if(localStorage.getItem("user")){
+      navigate("/");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   const handleSubmit = async (event) =>{
     event.preventDefault();
     if(handleValidation()){
-    //   const {password, username, email } = values;
-    //   const {data}  = await axios.post(registerRoute,{
-    //     username,
-    //     email,
-    //     password,
-    //   });
-    //   if(data.status === false){
-    //     toast.error(data.msg, toastOptions );
-    //   }
-    //   if(data.status === true){
-    //     localStorage.setItem('chat-user-data',JSON.stringify(data.user) );
-    //   }
-    //   navigate("/");
+      const {password, username, email } = values;
+      const {data}  = await axios.post(registerRoute,{
+        username,
+        email,
+        password,
+      });
+      if(data.status === false){
+        toast.error(data.msg, toastOptions );
+      }
+      if(data.status === true){
+        localStorage.setItem('user-data',JSON.stringify(data.user) );
+      }
+      navigate("/");
     }
   };
 
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
+    position: "top-right",
+    autoClose: 5000,
     pauseOnHover: true,
     draggable: true,
-    theme: "light",
+    theme: "dark",
   };
 
   const handleValidation = () => {
@@ -130,7 +130,7 @@ const FormContainer = styled.div`
     justify-content: center;
     gap: 1rem;
     align-items: center;
-    background-color: #EAFDFC;
+    background-color: #d5f7f6;
     .brand{
         display: flex ;
         align-items: center;

@@ -40,8 +40,8 @@ function Login() {
   };
 
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
+    position: "top-right",
+    autoClose: 5000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
@@ -109,7 +109,7 @@ const FormContainer = styled.div`
     justify-content: center;
     gap: 1rem;
     align-items: center;
-    background-color: #EAFDFC;
+    background-color: #d5f7f6;
     .brand{
         display: flex ;
         align-items: center;
