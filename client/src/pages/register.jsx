@@ -26,7 +26,7 @@ function Register() {
     event.preventDefault();
     if(handleValidation()){
       const {password, username, email } = values;
-      const {data}  = await axios.post(registerRoute,{
+      try{const {data}  = await axios.post(registerRoute,{
         username,
         email,
         password,
@@ -36,6 +36,8 @@ function Register() {
       }
       if(data.status === true){
         localStorage.setItem('user-data',JSON.stringify(data.user) );
+      }}catch(error){
+        console.log(error.response.data);
       }
       navigate("/");
     }

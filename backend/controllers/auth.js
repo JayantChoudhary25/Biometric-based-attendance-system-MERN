@@ -4,10 +4,11 @@ const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
 exports.register = async (req, res, next) => {
-  const find = await User.findOne({ where: { email: req.body.email } });
-  if (find) {
-    return next(new ErrorResponse("User already registered", 400));
-  } else {
+  // const find = await User.findOne({ where: { email: req.body.email } });
+  // if (find) {
+  //   return next(new ErrorResponse("User already registered", 400));
+  // } else
+   {
     const { username, email, password } = req.body;
     try {
       const user = await User.create({

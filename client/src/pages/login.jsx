@@ -15,7 +15,7 @@ function Login() {
   });
 
   useEffect(() => {
-    if(localStorage.getItem("chat-app-user")){
+    if(localStorage.getItem("user")){
     //   navigate("/");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
@@ -23,17 +23,21 @@ function Login() {
   const handleSubmit = async (event) =>{
     event.preventDefault();
     if(handleValidation()){
-      const {password, username} = values;
+      const {password, email} = values;
+      try{
       const {data}  = await axios.post(loginRoute,{
-        username,
+        email,
         password,
       });
+      
       if(data.status === false){
         toast.error(data.msg, toastOptions );
       }
       if(data.status === true){
-        localStorage.setItem('chat-app-user',JSON.stringify(data.user) );
+        localStorage.setItem('user',JSON.stringify(data.user) );
         navigate("/");  
+      }}catch(error){
+        console.log(error.response.data);
       }
       
     }
@@ -76,7 +80,7 @@ function Login() {
           
           <input 
           type="text" 
-          placeholder="Username" 
+          placeholder="Email" 
           name='username' 
           onChange={(e)=>handleChange(e)}
           min="3"
