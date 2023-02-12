@@ -17,14 +17,11 @@ export default function Dashboard() {
         <nav className="main-nav">
           {/* 1st logo */}
           <div className="logo">
-            <h2>Dashboard</h2>
+            <a href="/"><h2>Dashboard</h2></a>
           </div>
           {/* 2nd menu */}
           <div className="menu-link">
             <ul>
-              <li>
-                <a href="home">Home</a>
-              </li>
               <li>
                 <a href="teacher">Teacher</a>
               </li>
