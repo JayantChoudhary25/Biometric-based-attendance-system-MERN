@@ -1,5 +1,5 @@
-import React, { useState , useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
@@ -48,7 +48,7 @@ function AddTeacher() {
   };
 
   const handleValidation = () => {
-    const {teacher_name, email,phone_no,subject,_class } = values;
+    const {teacher_name, email,subject,_class } = values;
 
     if (teacher_name.length<3){
       toast.error("Teacher name must be greater than 3 characters.", toastOptions);
