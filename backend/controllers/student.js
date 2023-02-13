@@ -1,35 +1,37 @@
 const Student = require("../models/Student");
 
 exports.add_student = async (req, res, next) => {
-  const { teacher_name, phone_number, email, subject } = req.body;
+  const { student_name, computer_code, email, course, subjects, _class } =
+    req.body;
   try {
-    const result = await Teacher.create({
-      teacher_name,
+    const result = await Student.create({
+      student_name,
+      computer_code,
       email,
-      phone_number,
-      subject,
-      class: req.body.class,
+      course,
+      subjects,
+      _class,
     });
-    return res.json({ msg: "Teacher Created", result, status: true });
+    return res.json({ msg: "Student Created", result, status: true });
   } catch (error) {
     next(error);
   }
 };
 
-exports.get_all_teacher = async (req, res, next) => {
+exports.get_all_student = async (req, res, next) => {
   try {
-    const result = await Teacher.find();
-    return res.json({ Tecaher_Details: result, status: true });
+    const result = await Student.find();
+    return res.json({ Student_Details: result, status: true });
   } catch (error) {
     next(error);
   }
 };
 
-exports.remove_teacher = async (req, res, next) => {
+exports.remove_student = async (req, res, next) => {
   try {
-    const result = await Teacher.findByIdAndDelete({ _id: req.body._id });
+    const result = await Student.findByIdAndDelete({ _id: req.body._id });
     return res.json({
-      Tecaher_Details: "Teacher removed",
+      msg: "Student removed",
       result,
       status: true,
     });
@@ -38,21 +40,23 @@ exports.remove_teacher = async (req, res, next) => {
   }
 };
 
-exports.update_teacher = async (req, res, next) => {
-    const { teacher_name, phone_number, email, subject } = req.body;
-    try {
-      const result = await Teacher.updateMany({
-        teacher_name,
-        email,
-        phone_number,
-        subject,
-        class: req.body.class,
-        where: {
-            _id: req.body._id
-        }
-      });
-      return res.json({ msg: "Teacher Updated", status: true });
-    } catch (error) {
-      next(error);
-    }
+exports.update_student = async (req, res, next) => {
+  const { student_name, computer_code, email, course, subjects, _class } =
+    req.body;
+  try {
+    const result = await Student.updateMany({
+      student_name,
+      computer_code,
+      email,
+      course,
+      subjects,
+      _class,
+      where: {
+        _id: req.body._id,
+      },
+    });
+    return res.json({ msg: "Student Updated", result, status: true });
+  } catch (error) {
+    next(error);
+  }
 };
