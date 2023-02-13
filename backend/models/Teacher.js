@@ -13,7 +13,7 @@ const TeacherSchema = new mongoose.Schema({
   subject: {
     type: String,
   },
-  class: {
+  _class: {
     type: String,
   }
 });

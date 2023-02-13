@@ -13,7 +13,7 @@ const StudentSchema = new mongoose.Schema({
   course: {
     type: String,
   },
-  class: {
+  _class: {
     type: String,
   },
   subjects: [
