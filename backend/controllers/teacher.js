@@ -1,14 +1,14 @@
 const Teacher = require("../models/Teacher");
 
 exports.add_teacher = async (req, res, next) => {
-  const { teacher_name, phone_number, email, subject } = req.body;
+  const { teacher_name, phone_number, email, subject ,_class} = req.body;
   try {
     const result = await Teacher.create({
       teacher_name,
       email,
       phone_number,
       subject,
-      class: req.body.class,
+      _class,
     });
     return res.json({ msg: "Teacher Created", result, status: true });
   } catch (error) {

@@ -3,13 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
+import { addTeacherRoute} from "../utils/APIRoutes";
 
 function AddTeacher() {
   const navigate = useNavigate();
   const [values,setValues] = useState({
-    name: "",
+    teacher_name: "",
     email: "",
-    phone_no: "",
+    phone_number: "",
     subject: "",
     _class: "",
   });
@@ -17,23 +18,24 @@ function AddTeacher() {
   const handleSubmit = async (event) =>{
     event.preventDefault();
     if(handleValidation()){
-    const {name, email,phone_no,subject,_class } = values;
+    const {teacher_name, email,phone_number,subject,_class } = values;
     console.log(values);
-    //   try
-    //   {const {data}  = await axios.post(registerRoute,{
-    //     username,
-    //     email,
-    //     password,
-    //   });
-    //   if(data.status === true){
-    //     localStorage.setItem('user-data',JSON.stringify(data.user) );
-    //   }else{
-    //     toast.error(data.msg, toastOptions );
-    //   }
-    // }catch(error){
-    //     console.log(error.response.data);
-    //   }
-    //   navigate("/login");
+      try{const {data}  = await axios.post(addTeacherRoute,{
+        teacher_name,
+        email,
+        phone_number,
+        subject,
+        _class,
+      });
+      if(data.status === true){
+        localStorage.setItem('user-data',JSON.stringify(data.user) );
+      }else{
+        toast.error(data.msg, toastOptions );
+      }
+    }catch(error){
+        console.log(error.response.data);
+      }
+      navigate("/login");
     }
   };
 
@@ -46,10 +48,10 @@ function AddTeacher() {
   };
 
   const handleValidation = () => {
-    const {name, email,phone_no,subject,_class } = values;
+    const {teacher_name, email,phone_no,subject,_class } = values;
 
-    if (name.length<3){
-      toast.error("User name must be greater than 3 characters.", toastOptions);
+    if (teacher_name.length<3){
+      toast.error("Teacher name must be greater than 3 characters.", toastOptions);
       return false;
     } else if (email ===""){
       toast.error("Email is required.", toastOptions);
@@ -80,7 +82,7 @@ function AddTeacher() {
           <input 
           type="text" 
           placeholder="Name" 
-          name='name' 
+          name='teacher_name' 
           onChange={(e)=>handleChange(e)}
           />
 
@@ -94,7 +96,7 @@ function AddTeacher() {
           <input 
           type="string" 
           placeholder="Phone Number" 
-          name='phone_no' 
+          name='phone_number' 
           onChange={ (e) =>handleChange(e)}
           />
 
