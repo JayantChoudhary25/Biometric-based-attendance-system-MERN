@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
 function Teacher() {
   const navigate = useNavigate();
   const handleClick1 = () =>{
@@ -16,6 +15,7 @@ function Teacher() {
   const handleClick4 = () =>{
     navigate("/teacher/delete_teacher");
   }
+
   return (
     <>
       <TeacherContainer>

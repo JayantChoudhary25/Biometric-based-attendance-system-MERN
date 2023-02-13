@@ -19,7 +19,6 @@ function AddTeacher() {
     event.preventDefault();
     if(handleValidation()){
     const {teacher_name, email,phone_number,subject,_class } = values;
-    console.log(values);
       try{const {data}  = await axios.post(addTeacherRoute,{
         teacher_name,
         email,
@@ -28,14 +27,15 @@ function AddTeacher() {
         _class,
       });
       if(data.status === true){
-        localStorage.setItem('user-data',JSON.stringify(data.user) );
+        let mess = teacher_name+" added successfully.";
+        alert(mess);
+        navigate("/teacher");
       }else{
         toast.error(data.msg, toastOptions );
       }
     }catch(error){
         console.log(error.response.data);
       }
-      navigate("/login");
     }
   };
 
