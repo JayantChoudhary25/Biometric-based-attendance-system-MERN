@@ -11,327 +11,336 @@ export default function Dashboard() {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const myuser = JSON.parse(localStorage.user);
+  const user = myuser.username;
+  
   return (
     <>
-      <FormContainer>
-        <nav className="main-nav">
-          {/* 1st logo */}
-          <div className="logo">
-            <a href="/"><h2>Dashboard</h2></a>
-          </div>
-          {/* 2nd menu */}
-          <div className="menu-link">
-            <ul>
-              <li>
-                <a href="teacher">Teacher</a>
-              </li>
-              <li>
-                <a href="student">Student</a>
-              </li>
-              <li>
-                <a href="bio">Biometric</a>
-              </li>
-            </ul>
-          </div>
-          {/* 3rd Social Media */}
-          <div className="social-media">
-            <ul className="social-media-desktop">
-              <li>
-                <a
-                  href="https://www.instagram.com/ipsacademyindore/?hl=en"
-                  target="_ips">
-                  <FaInstagramSquare className="instagram" />
+      <DashboardContainer>
+      <div className="sidebar active">
+        <div className="logo_content">
+            <div className="logo">
+                <i className='bx bxl-c-plus-plus' style={{fontSize:"30px" }}></i>
+                <div className="logoname" style={{marginLeft: "5px"}}>Attendance Home</div>
+            </div>
+            <i className='bx bx-menu-alt-right' id="btn" style={{fontSize:"25px" }}></i>
+        </div>
+        <ul className="nav_list">
+            {/*
+            FOR SEARCH BAR 
+            <li>
+                
+                <i className='bx bx-search'></i>
+                <input type="text" placeholder="Search..." />
+                <span className="tooltip">Search</span>
+            </li> */}
+            <li>
+                <a href="#">
+                    <i className='bx bx-grid-alt'></i>
+                    <span className="link_names">Teacher</span>
                 </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        {/* section */}
-        <section className="section">
-          <p>Welcome to Dashboard</p>
-        </section>
-      </FormContainer>
+                <span className="tooltip">Teacher</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-user' ></i>
+                    <span className="link_names">Student</span>
+                </a>
+                <span className="tooltip">Student</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-chat' ></i>
+                    <span className="link_names">Biometric</span>
+                </a>
+                <span className="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-pie-chart-alt-2' ></i>
+                    <span className="link_names">Analytics</span>
+                </a>
+                <span className="tooltip">Analytics</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-folder' ></i>
+                    <span className="link_names">Files</span>
+                </a>
+                <span className="tooltip">Files</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-cart-alt' ></i>
+                    <span className="link_names">Orders</span>
+                </a>
+                <span className="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-heart' ></i>
+                    <span className="link_names">Liked</span>
+                </a>
+                <span className="tooltip">Liked</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i className='bx bx-cog' ></i>
+                    <span className="link_names">Settings</span>
+                </a>
+                <span className="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div className="profile_content">
+            <div className="profile">
+                <div className="profile_details">
+                    <div className="name_job">
+                        <div className="name">{user}</div>
+                        <div className="job">Role</div>
+                    </div>
+                </div>
+                <i className='bx bx-log-out' id="log_out"></i>
+            </div>
+        </div>
+    </div>
+    <div className="home_content">
+        <div className="text">Welcome to the dashboard...</div>
+    </div>
+      </DashboardContainer>
     </>
   );
 }
 
-const FormContainer = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100&display=swap");
-
-  * {
+const DashboardContainer = styled.div`
+  @import url(https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap);
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Jost", sans-serif;
-  }
-
-  html {
-    font-size: 62.5%;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  li {
-    list-style: none;
-  }
-
-  /* navbar style start  */
-
-  .main-nav {
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    position: relative;
+    min-height: 100vh;
     width: 100%;
-    height: 10rem;
-    display: grid;
-    grid-template-columns: 5rem 1fr 2fr 1fr 5rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  }
-
-  .logo {
-    display: grid;
-    grid-column: 2/3;
-    justify-content: start;
-    align-items: center;
-  }
-
-  .menu-link {
-    grid-column: 3/4;
-  }
-
-  .menu-link ul {
-    height: 10rem;
+    overflow: hidden;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60px;
+    background: #11101d;
+    padding: 2px 6px;
+    transition: all 0.5s ease;
+}
+.sidebar.active{
+    width: 240px;
+}
+.sidebar .logo_content .logo{
+    color: #fff;
     display: flex;
-    justify-content: space-around;
+    height: 50px;
+    width: 100%;
     align-items: center;
-  }
-
-  .social-media {
-    grid-column: 4/5;
-  }
-
-  .social-media ul {
-    height: 10rem;
-    display: grid;
-    grid-template-columns: 3fr repeat(3, 1fr);
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .social-media ul li {
-    text-align: right;
-  }
-
-  .social-media ul li:first-child {
-    grid-column: 2/3;
-  }
-
-  /* ----------- Grid part ends ----------------- */
-
-  .logo h2 {
-    font-size: 2.5rem;
+    font-size: 20px;
+    opacity: 0;
+    pointer-events: none;
+}
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+.logo_content.logo i{
+    font-size: 28px;
+    margin-right: 5px;
+}
+.logo_content .logo .logo_name{
+    font-size: 20px;
     font-weight: 400;
-    text-transform: uppercase;
-    background: -webkit-linear-gradient(#eee, rgb(69, 57, 248));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .logo h2 span {
-    font-size: 3.5rem;
-  }
-
-  .menu-link ul li {
-    font-size: 1.8rem;
-  }
-
-  .menu-link ul li a {
-    text-transform: capitalize;
-    color: rgba(0, 0, 3, 0.8);
-    transition: 0.5s;
-  }
-  .menu-link ul li:hover > a {
-    transform-origin: left;
-    color: rgba(0, 0, 3, 1);
-    text-decoration: underline;
-    transition: 0.5s;
-  }
-
-  .social-media ul li {
-    font-size: 1.8rem;
-  }
-
-  .social-media .hamburger-menu {
-    display: none;
-  }
-
-  .instagram {
-    color: #c32aa3;
-  }
-
-  /* hero section   */
-
-  .section {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .section p {
-    font-size: 3rem;
-    text-transform: capitalize;
-  }
-
-  .section h1 {
-    font-size: 5rem;
-    text-transform: uppercase;
+}
+.sidebar #btn{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
     text-align: center;
-  }
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+.sidebar.active #btn{
+    left: 90%;
+}
+.sidebar ul{
+    margin-top: 20px;
+}
+.sidebar ul li{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 0 5px;
+    line-height: 50px;
+    
+}
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 122px;
+    top: 0;
+    transform: translate(-50%,-50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    line-height: 35px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s ;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+.sidebar ul li:hover .tooltip{
+    transition: all 0.5s ease;
+    opacity: 1;
+    top: 50%;
+}
+.sidebar ul li input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    background: #1d1b31;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+}
+.sidebar ul li .bx-search{
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 22px;
+    transition: all 0.5s ease;
+}
+.sidebar ul li .bx-search:hover{
+    background: #fff;
+    color: #11101d;
+}
+.sidebar.active ul li .bx-search:hover{
+    background: #1d1b31;
+    color: #fff;
+}
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+.sidebar ul li a:hover{
+    background: #fff;
+    color: #11101d;
+}
+.sidebar ul li i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+}
+.sidebar .link_names{
+    opacity: 0;
+    pointer-events: none;
+}
+.sidebar.active .link_names{
+    opacity: 1;
+    pointer-events: auto;
+}
 
-  /* responsive css style  */
-  @media (max-width: 1080px) {
-    .main-nav {
-      height: 8rem;
-      grid-template-columns: 2rem 3fr 3fr 1fr 2rem;
-    }
-
-    .logo,
-    .menu-link ul,
-    .social-media ul {
-      height: 8rem;
-    }
-  }
-
-  /* responsive css style  */
-  @media (max-width: 998px) {
-    .main-nav {
-      height: 7rem;
-      grid-template-columns: 2rem 2fr 3fr 2rem 2rem;
-    }
-
-    .menu-link {
-      display: none;
-    }
-
-    .logo,
-    .social-media ul {
-      height: 7rem;
-    }
-
-    .mobile-menu-link {
-      grid-column: 2/4;
-      position: relative;
-      z-index: 99;
-    }
-
-    .mobile-menu-link {
-      background-color: white;
-      height: 20rem;
-      display: grid;
-      grid-column: 2/5;
-      align-items: center;
-      padding-left: 3rem;
-      transition: all 2s linear;
-      transform-origin: top;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    }
-
-    .mobile-menu-link ul {
-      height: 20rem;
-      display: flex;
-      justify-content: space-around;
-      flex-direction: column;
-      align-items: start;
-    }
-
-    .mobile-menu-link ul li:first-child {
-      transition-delay: 0.2s;
-    }
-
-    .social-media {
-      grid-row: 1/2;
-      grid-column: 3/5;
-      justify-items: end;
-      align-items: center;
-      transition: all 2s linear;
-    }
-
-    .social-media .social-media-desktop {
-      height: 0;
-      display: none;
-    }
-
-    .social-media {
-      height: 7rem;
-      display: flex;
-      justify-self: end;
-      align-items: center;
-    }
-
-    .social-media .hamburger-menu {
-      display: block;
-      font-size: 2.5rem;
-    }
-  }
-
-  @media (max-width: 798px) {
-    .main-nav {
-      height: 6rem;
-      grid-template-columns: 1rem 2fr 1fr 1fr 1rem;
-    }
-
-    .logo,
-    .social-media ul {
-      height: 6rem;
-    }
-
-    .social-media {
-      height: 6rem;
-      display: flex;
-      justify-self: end;
-      align-items: center;
-    }
-
-    .social-media .hamburger-menu {
-      display: block;
-      font-size: 2.5rem;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .main-nav {
-      height: 6rem;
-      grid-template-columns: 1rem 4fr 1fr 1fr 1rem;
-    }
-
-    .logo,
-    .social-media ul {
-      height: 6rem;
-    }
-
-    .logo h2 {
-      font-size: 2rem;
-    }
-
-    .social-media {
-      height: 6rem;
-      display: flex;
-      justify-self: end;
-      align-items: center;
-    }
-
-    .social-media .hamburger-menu {
-      display: block;
-      font-size: 2.5rem;
-    }
-
-    /* hero section  */
-
-    .section h1 {
-      font-size: 3.8rem;
-    }
-  }
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.sidebar .profile_content .profile{
+    position: relative;
+    padding: 10px 6px;
+    height: 60px;
+    background: #1d1b31;
+}
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+.profile .profile_details img{
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.profile .profile_details .name_job{
+    margin-left: 10px;
+}
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
+.profile .profile_details .job{
+    font-size: 12px;
+}
+.profile #log_out{
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+.profile #log_out:hover{
+    background: #fff;
+    color: #11101d;
+}
+.sidebar.active .profile #log_out {
+    left: 88%;
+}
+.home_content{
+    position: absolute;
+    left: 60px;
+    width: calc(100%-60px);
+}
+.sidebar.active ~ .home_content{
+    left: 240px;
+    width: calc(100% - 240px);
+}
+.home_content .text{
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin: 12px;
+}
 `;

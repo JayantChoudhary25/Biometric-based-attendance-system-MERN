@@ -29,12 +29,11 @@ function Login() {
         email,
         password,
       });
-      console.log(data);
       if(data.status === false){
         toast.error(data.msg, toastOptions );
       }
       if(data.success === true){
-        localStorage.setItem('user',JSON.stringify(data.user) );
+        localStorage.setItem('user',JSON.stringify(data.username) );
         navigate("/");  
       }}catch(error){
         console.log(error.response.data);

@@ -36,7 +36,8 @@ exports.login = async (req, res, next) => {
     if (!isMatch) {
       return res.json({msg:"Incorrect username or password.", status:false});
     }
-    sendToken(user, 200, res);
+    const username = await User.findOne({email},{_id:0, username:1});
+    sendToken(user, 200, res,username);
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -115,7 +116,7 @@ exports.resetPassword = async (req, res, next) => {
   }
 };
 
-const sendToken = (user, statusCode, res) => {
+const sendToken = (user, statusCode, res ,username) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ success: true, token ,user});
+  res.status(statusCode).json({ success: true, token ,user,username});
 };
