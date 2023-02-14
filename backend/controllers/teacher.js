@@ -18,8 +18,8 @@ exports.add_teacher = async (req, res, next) => {
 
 exports.get_all_teacher = async (req, res, next) => {
   try {
-    const result = await Teacher.find();
-    return res.json({ Tecaher_Details: result, status: true });
+    const result = await Teacher.find({},{_id:0, teacher_name:1 , phone_number:1,email:1,subject:1,_class:1});
+    return res.json({result });
   } catch (error) {
     next(error);
   }

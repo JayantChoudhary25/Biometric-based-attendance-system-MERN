@@ -4,96 +4,142 @@ import styled from 'styled-components';
 import {getAllTeacherRoute} from '../utils/APIRoutes';
 function GetAllTeacher() {
 
-  const [allTeachers , setAllTeachers] = useState([""]);
+  const [allTeachers , setAllTeachers] = useState([]);
+  const myfunc = async ()=>{
+    const response = await axios.post(getAllTeacherRoute);
+    setAllTeachers(response.data.result);
+  }
   useEffect(() => {
-    const myfunc = async ()=>{
-      const response = await axios.post(getAllTeacherRoute);
-      setAllTeachers(response.data);
-    }
     myfunc();
   },[]);
-  console.log(allTeachers);
+
   return (
     <Container>
-    <div>
-      {allTeachers.map((teacher) => (
-        <div className="user">{teacher}</div>
-      ))}
+    <div >
+    <div className="container">
+            <ul className="responsive-table">
+            <li className="table-header">
+                <div className="col col-1" >Teacher Name</div>
+                <div className="col col-2" >Email</div>
+                <div className="col col-3" >Phone Number</div>
+                <div className="col col-4" >Subject</div>
+                <div className="col col-5" >Class </div>
+              </li>
+            </ul>
+          </div>
+      {allTeachers.map((items,index) =>{
+        return(
+          <div key={index} className="container">
+            <ul className="responsive-table">
+              <li className="table-row">
+                <div className="col col-1" data-label="Teacher Name">{items.teacher_name}</div>
+                <div className="col col-2" data-label="Email">{items.email}</div>
+                <div className="col col-3" data-label="Phone Number">{items.phone_number}</div>
+                <div className="col col-4" data-label="Subject">{items.subject}</div>
+                <div className="col col-5" data-label="Class">{items._class}</div>
+              </li>
+            </ul>
+          </div>
+        )        
+      })
+      }
     </div>
     </Container>
   )
 }
-
 export default GetAllTeacher;
 const Container = styled.div`
-  display: grid;
-  grid-template-rows: 10% 80% 10%;
-  gap: 0.1rem;
-  overflow: hidden;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
-    grid-template-rows: 15% 70% 15%;
-  }
-  .chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    .user-details {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      .avatar {
-        img {
-          height: 3rem;
-        }
-      }
-      .username {
-        h3 {
-          color: white;
-        }
-      }
-    }
-  }
-  .chat-messages {
-    padding: 1rem 2rem;
+  height: 100vh;
+  width: 100vw;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      width: 0.2rem;
-      &-thumb {
-        background-color: #ffffff39;
-        width: 0.1rem;
-        border-radius: 1rem;
-      }
-    }
-    .message {
-      display: flex;
-      align-items: center;
-      .content {
-        max-width: 40%;
-        overflow-wrap: break-word;
-        padding: 1rem;
-        font-size: 1.1rem;
-        border-radius: 1rem;
-        color: #d1d1d1;
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
-          max-width: 70%;
+    background-color: #d5f7f6;
+  body {
+  font-family: 'lato', sans-serif;
+}
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.container{
+        
         }
-      }
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+  small {
+    font-size: 0.5em;
+  }
+}
+
+.responsive-table {
+  li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  .table-header {
+    background-color: #BFEAF5;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    cursor: pointer;
+        transition: 0.4s ease-in-out;
+          &:hover{
+              background-color: #EAFDFC ;
+          }
+  }
+  .col-1 {
+    flex-basis: 20%;
+  }
+  .col-2 {
+    flex-basis: 30%;
+  }
+  .col-3 {
+    flex-basis: 20%;
+  }
+  .col-4 {
+    flex-basis: 15%;
+  }
+  .col-5 {
+    flex-basis: 15%;
+  }
+  @media all and (max-width: 767px) {
+    .table-header {
+      display: none;
     }
-    .sended {
-      justify-content: flex-end;
-      .content {
-        background-color: #4f04ff21;
-      }
+    .table-row{
+      
     }
-    .recieved {
-      justify-content: flex-start;
-      .content {
-        background-color: #9900ff20;
+    li {
+      display: block;
+    }
+    .col {
+      
+      flex-basis: 100%;
+      
+    }
+    .col {
+      display: flex;
+      padding: 10px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
       }
     }
   }
+}
 `;
