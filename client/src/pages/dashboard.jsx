@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaInstagramSquare } from "react-icons/fa";
 import styled from "styled-components";
+// import Teacher from '.././components/teacher';
+// import Student from '.././components/student';
+// import Biometric from '.././components/biometric';
+import Welcome from "../components/welcome";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ export default function Dashboard() {
 
   const myuser = JSON.parse(localStorage.user);
   const user = myuser.username;
-  
+//   const [myState , setMyState] = useState("Welcome");
   return (
     <>
       <DashboardContainer>
@@ -35,60 +38,31 @@ export default function Dashboard() {
                 <span className="tooltip">Search</span>
             </li> */}
             <li>
-                <a href="#">
+                <div name="Teacher">
+                <a href="http://localhost:3000">
                     <i className='bx bx-grid-alt'></i>
                     <span className="link_names">Teacher</span>
                 </a>
+                </div>
                 <span className="tooltip">Teacher</span>
             </li>
             <li>
-                <a href="#">
+                <div name="Student">
+                <a href="http://localhost:3000/">
                     <i className='bx bx-user' ></i>
                     <span className="link_names">Student</span>
                 </a>
+                </div>
                 <span className="tooltip">Student</span>
             </li>
             <li>
-                <a href="#">
+                <div name="Biometric">
+                <a href="http://localhost:3000/">
                     <i className='bx bx-chat' ></i>
                     <span className="link_names">Biometric</span>
                 </a>
+                </div>
                 <span className="tooltip">Messages</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i className='bx bx-pie-chart-alt-2' ></i>
-                    <span className="link_names">Analytics</span>
-                </a>
-                <span className="tooltip">Analytics</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i className='bx bx-folder' ></i>
-                    <span className="link_names">Files</span>
-                </a>
-                <span className="tooltip">Files</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i className='bx bx-cart-alt' ></i>
-                    <span className="link_names">Orders</span>
-                </a>
-                <span className="tooltip">Orders</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i className='bx bx-heart' ></i>
-                    <span className="link_names">Liked</span>
-                </a>
-                <span className="tooltip">Liked</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i className='bx bx-cog' ></i>
-                    <span className="link_names">Settings</span>
-                </a>
-                <span className="tooltip">Settings</span>
             </li>
         </ul>
         <div className="profile_content">
@@ -96,7 +70,7 @@ export default function Dashboard() {
                 <div className="profile_details">
                     <div className="name_job">
                         <div className="name">{user}</div>
-                        <div className="job">Role</div>
+                        <div className="job">Admin</div>
                     </div>
                 </div>
                 <i className='bx bx-log-out' id="log_out"></i>
@@ -104,7 +78,7 @@ export default function Dashboard() {
         </div>
     </div>
     <div className="home_content">
-        <div className="text">Welcome to the dashboard...</div>
+        <div className="text"><Welcome /></div>
     </div>
       </DashboardContainer>
     </>
@@ -114,6 +88,7 @@ export default function Dashboard() {
 const DashboardContainer = styled.div`
   @import url(https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap);
 *{
+    justify-content:center;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -136,7 +111,7 @@ body{
     transition: all 0.5s ease;
 }
 .sidebar.active{
-    width: 240px;
+    width: 15vw;
 }
 .sidebar .logo_content .logo{
     color: #fff;
@@ -147,6 +122,7 @@ body{
     font-size: 20px;
     opacity: 0;
     pointer-events: none;
+    margin-bottom: 170px;
 }
 .sidebar.active .logo_content .logo{
     opacity: 1;
@@ -182,8 +158,9 @@ body{
     position: relative;
     height: 50px;
     width: 100%;
-    margin-top: 0 5px;
+    margin-top: 0 50px;
     line-height: 50px;
+    margin-bottom: 40px;
     
 }
 .sidebar ul li .tooltip{
