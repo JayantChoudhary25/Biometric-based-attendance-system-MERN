@@ -43,8 +43,8 @@ function Teacher() {
   )
 }
 const TeacherContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 95vh;
+  width: 82vw;
     display: flex;
     flex-direction: column;
     justify-content: center;

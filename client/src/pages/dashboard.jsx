@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-// import Teacher from '.././components/teacher';
-// import Student from '.././components/student';
-// import Biometric from '.././components/biometric';
+import Teacher from '.././components/teacher';
+import Student from '.././components/student';
+import Biometric from '.././components/biometric';
 import Welcome from "../components/welcome";
 
 export default function Dashboard() {
@@ -161,7 +161,6 @@ body{
     margin-top: 0 50px;
     line-height: 50px;
     margin-bottom: 40px;
-    
 }
 .sidebar ul li .tooltip{
     position: absolute;
