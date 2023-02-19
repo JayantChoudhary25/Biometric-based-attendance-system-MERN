@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Teacher from '.././components/teacher';
 import Student from '.././components/student';
 import Biometric from '.././components/biometric';
 import Welcome from "../components/welcome";
+import RenderMyState from "../components/renderMyState";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -16,7 +17,13 @@ export default function Dashboard() {
 
   const myuser = JSON.parse(localStorage.user);
   const user = myuser.username;
-//   const [myState , setMyState] = useState("Welcome");
+  const [myState , setMyState] = useState("0");
+
+  
+  const handleClick = ( state ) => {
+    setMyState(state);
+  }
+  
   return (
     <>
       <DashboardContainer>
@@ -38,8 +45,8 @@ export default function Dashboard() {
                 <span className="tooltip">Search</span>
             </li> */}
             <li>
-                <div name="Teacher">
-                <a href="http://localhost:3000">
+                <div onClick={handleClick("1")} name="Teacher">
+                <a>
                     <i className='bx bx-grid-alt'></i>
                     <span className="link_names">Teacher</span>
                 </a>
@@ -47,7 +54,7 @@ export default function Dashboard() {
                 <span className="tooltip">Teacher</span>
             </li>
             <li>
-                <div name="Student">
+                <div onClick={handleClick("2")} name="Student">
                 <a href="http://localhost:3000/">
                     <i className='bx bx-user' ></i>
                     <span className="link_names">Student</span>
@@ -56,7 +63,7 @@ export default function Dashboard() {
                 <span className="tooltip">Student</span>
             </li>
             <li>
-                <div name="Biometric">
+                <div onClick={handleClick("3")} name="Biometric">
                 <a href="http://localhost:3000/">
                     <i className='bx bx-chat' ></i>
                     <span className="link_names">Biometric</span>
@@ -78,7 +85,8 @@ export default function Dashboard() {
         </div>
     </div>
     <div className="home_content">
-        <div className="text"><Welcome /></div>
+    
+        <div className="text"><RenderMyState state={myState} /></div>
     </div>
       </DashboardContainer>
     </>
