@@ -113,7 +113,7 @@ function AddTeacher() {
           name='_class' 
           onChange={ (e) =>handleChange(e)}
           />
-          <button type='submit'>Add Tacher</button>
+          <button type='submit'>Add Teacher</button>
         </form>
       </AddTeacherContainer>
       <ToastContainer />

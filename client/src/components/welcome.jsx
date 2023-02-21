@@ -11,9 +11,9 @@ function Welcome() {
   )
 }
 const WelcomeContainer = styled.div`
-  height: 95vh;
-  width: 82vw;
-    display: flex;
+  height: 100%;
+  width: 100%;
+    display: fixed;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
@@ -23,13 +23,11 @@ const WelcomeContainer = styled.div`
         display: flex ;
         align-items: center;
         gap: 1rem;
-        justify-content: center;
-        img{
-            height: 5rem;
-        } 
+        justify-content: center; 
         h1{
         color: #516665;
         text-transform: uppercase;
+        margin-left: 300px;
         }
     }
     

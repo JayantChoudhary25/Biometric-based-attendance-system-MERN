@@ -36,7 +36,7 @@ exports.login = async (req, res, next) => {
     if (!isMatch) {
       return res.json({msg:"Incorrect username or password.", status:false});
     }
-    const username = await User.findOne({email},{_id:0, username:1});
+    const username = await User.findOne({email});
     sendToken(user, 200, res,username);
   } catch (error) {
     res.status(500).json({
