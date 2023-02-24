@@ -3,14 +3,15 @@ import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Register from './pages/register';
 import Login from './pages/login';
 import Dashboard from './pages/dashboard';
-import GetAllTeacher from './pages/get_all_teacher';
-import AddTeacher from './pages/add_teacher';
-import UpdateTeacher from './pages/update_teacher';
-import DeleteTeacher from './pages/delete_teacher';
-import UpdateStudent from './pages/update_student';
-import DeleteStudent from './pages/delete_student';
-import AddStudent from './pages/add_student';
-import GetAllStudent from './pages/get_all_student';
+import GetAllTeacher from './pages/teachers/get_all_teacher';
+import AddTeacher from './pages/teachers/add_teacher';
+import UpdateTeacher from './pages/teachers/update_teacher';
+import DeleteTeacher from './pages/teachers/delete_teacher';
+import UpdateStudent from './pages/students/update_student';
+import DeleteStudent from './pages/students/delete_student';
+import AddStudent from './pages/students/add_student';
+import GetAllStudent from "./pages/students/get_all_student";
+
 export default function App() {
   return (
     <BrowserRouter>

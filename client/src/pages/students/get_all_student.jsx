@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-import {getAllTeacherRoute} from '../utils/APIRoutes';
-function GetAllTeacher() {
+import {getAllStudentRoute} from '../../utils/APIRoutes';
 
-  const [allTeachers , setAllTeachers] = useState([]);
+function GetAllStudent() {
+
+  const [allStudent , setAllStudent] = useState([]);
+
   const myfunc = async ()=>{
-    const response = await axios.post(getAllTeacherRoute);
-    setAllTeachers(response.data.result);
+    const response = await axios.post(getAllStudentRoute);
+    setAllStudent(response.data.result);
   }
   useEffect(() => {
     myfunc();
@@ -19,23 +21,23 @@ function GetAllTeacher() {
     <div className="container">
             <ul className="responsive-table">
             <li className="table-header">
-                <div className="col col-1" >Teacher Name</div>
+                <div className="col col-1" >Student Name</div>
                 <div className="col col-2" >Email</div>
-                <div className="col col-3" >Phone Number</div>
-                <div className="col col-4" >Subject</div>
+                <div className="col col-3" >Computer Code</div>
+                <div className="col col-4" >Course</div>
                 <div className="col col-5" >Class </div>
               </li>
             </ul>
           </div>
-      {allTeachers.map((items,index) =>{
+      {allStudent.map((items,index) =>{
         return(
           <div key={index} className="container">
             <ul className="responsive-table">
               <li className="table-row">
-                <div className="col col-1" data-label="Teacher Name">{items.teacher_name}</div>
+                <div className="col col-1" data-label="Teacher Name">{items.student_name}</div>
                 <div className="col col-2" data-label="Email">{items.email}</div>
-                <div className="col col-3" data-label="Phone Number">{items.phone_number}</div>
-                <div className="col col-4" data-label="Subject">{items.subject}</div>
+                <div className="col col-3" data-label="Phone Number">{items.computer_code}</div>
+                <div className="col col-4" data-label="Subject">{items.course}</div>
                 <div className="col col-5" data-label="Class">{items._class}</div>
               </li>
             </ul>
@@ -47,7 +49,7 @@ function GetAllTeacher() {
     </Container>
   )
 }
-export default GetAllTeacher;
+export default GetAllStudent;
 const Container = styled.div`
   height: 100%;
   width: 100%;

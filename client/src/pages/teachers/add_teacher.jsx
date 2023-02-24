@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-import { addTeacherRoute} from "../utils/APIRoutes";
+import { addTeacherRoute} from "../../utils/APIRoutes";
 
 function AddTeacher() {
   const navigate = useNavigate();

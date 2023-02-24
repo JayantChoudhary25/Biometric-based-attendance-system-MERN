@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Welcome from "./../components/welcome";
@@ -21,7 +21,9 @@ export default function Dashboard() {
       <section className="app">
   <aside className="sidebar">
       <header>
+      <a href="/">
         Dashboard
+      </a>  
       </header>
     <nav className="sidebar-nav">
  
@@ -43,6 +45,7 @@ export default function Dashboard() {
             </li>
           </ul>
         </li>
+        <li></li>
         <li>
           <a href="/"><i className="ion-ios-settings"></i> <span className="">Student</span></a>
           <ul className="nav-flyout">
@@ -60,6 +63,7 @@ export default function Dashboard() {
             </li>
           </ul>
         </li>
+        <li></li>
         <li>
           <a href="/"><i className="ion-ios-briefcase-outline"></i> <span className="">Biometric</span></a>
           <ul className="nav-flyout">
@@ -184,7 +188,7 @@ Sidebar Nav
 }
 .sidebar-nav ul li a {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.75em;
+  font-size: 0.9em;
   padding: 1.05em 1em;
   position: relative;
   display: block;
