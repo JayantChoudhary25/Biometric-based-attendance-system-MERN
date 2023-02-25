@@ -14,6 +14,7 @@ app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 app.use("/api/auth/teacher", require("./routes/teacher"));
+app.use("/api/auth/student", require("./routes/student"));
 
 // Error Handler 
 app.use(errorHandler);

@@ -21,7 +21,7 @@ exports.add_student = async (req, res, next) => {
 exports.get_all_student = async (req, res, next) => {
   try {
     const result = await Student.find();
-    return res.json({ Student_Details: result, status: true });
+    return res.json({ result });
   } catch (error) {
     next(error);
   }
