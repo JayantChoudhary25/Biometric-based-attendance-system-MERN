@@ -5,7 +5,7 @@ import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import GetAllTeacher from './pages/teachers/get_all_teacher';
 import AddTeacher from './pages/teachers/add_teacher';
-import UpdateTeacher from './pages/teachers/update_teacher';
+import UpdateTeacher from './components/update_teacher';
 import DeleteTeacher from './pages/teachers/delete_teacher';
 import UpdateStudent from './pages/students/update_student';
 import DeleteStudent from './pages/students/delete_student';
@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/login" element={<Login /> }></Route>
         <Route path='/teacher/get_all_teacher' element={<GetAllTeacher/>}/>
         <Route path='/teacher/add_teacher' element={<AddTeacher/>}/>
-        <Route path='/teacher/update_teacher' element={<ListTeacherComponent/>}/>
+        <Route path='/teacher/update_teacher' element={<UpdateTeacher/>}/>
         <Route path='/teacher/delete_teacher' element={<DeleteTeacher/>}/>
         <Route path='/student/add_student' element={<AddStudent/>}/>
         <Route path='/student/get_all_student' element={<GetAllStudent/>}/>
