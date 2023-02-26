@@ -11,6 +11,7 @@ import UpdateStudent from './pages/students/update_student';
 import DeleteStudent from './pages/students/delete_student';
 import AddStudent from './pages/students/add_student';
 import GetAllStudent from "./pages/students/get_all_student";
+import ListTeacherComponent from "./pages/teachers/ListTeacherComponent";
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
         <Route path="/login" element={<Login /> }></Route>
         <Route path='/teacher/get_all_teacher' element={<GetAllTeacher/>}/>
         <Route path='/teacher/add_teacher' element={<AddTeacher/>}/>
-        <Route path='/teacher/update_teacher' element={<UpdateTeacher/>}/>
+        <Route path='/teacher/update_teacher' element={<ListTeacherComponent/>}/>
         <Route path='/teacher/delete_teacher' element={<DeleteTeacher/>}/>
         <Route path='/student/add_student' element={<AddStudent/>}/>
         <Route path='/student/get_all_student' element={<GetAllStudent/>}/>
