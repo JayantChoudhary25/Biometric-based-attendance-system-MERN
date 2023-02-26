@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import styled from 'styled-components';
-import {getAllTeacherRoute} from '../../utils/APIRoutes';
-function GetAllTeacher() {
+import {getAllTeacherRoute, getTeacherByIDRoute} from '../../utils/APIRoutes';
+import UpdateTeacher from '../../components/update_teacher';
 
+function GetAllTeacher() {
+  const navigate = useNavigate();
   const [allTeachers , setAllTeachers] = useState([]);
+  const [updateSelected , setUpdateSelected] = useState(false);
+
   const myfunc = async ()=>{
     const response = await axios.post(getAllTeacherRoute);
     setAllTeachers(response.data.result);
@@ -12,9 +17,19 @@ function GetAllTeacher() {
   useEffect(() => {
     myfunc();
   },[]);
-
+  const handleClick = async (email) => {
+    const myData = await axios.post(getTeacherByIDRoute,{email:email} );
+    console.log(myData.data.result);
+    setUpdateSelected(true);
+  };
   return (
     <Container>
+    <div className='updateform'>
+    {
+        updateSelected === true ? 
+        (<UpdateTeacher />):<></>
+    }
+    </div>
     <div >
     <div className="container">
             <ul className="responsive-table">
@@ -24,6 +39,7 @@ function GetAllTeacher() {
                 <div className="col col-3" >Phone Number</div>
                 <div className="col col-4" >Subject</div>
                 <div className="col col-5" >Class </div>
+                <div className='col col-6' >Update</div>
               </li>
             </ul>
           </div>
@@ -37,6 +53,7 @@ function GetAllTeacher() {
                 <div className="col col-3" data-label="Phone Number">{items.phone_number}</div>
                 <div className="col col-4" data-label="Subject">{items.subject}</div>
                 <div className="col col-5" data-label="Class">{items._class}</div>
+                <div className='col col-6' data-label="Update"><button onClick={() => handleClick(items.email)} >Update</button></div>
               </li>
             </ul>
           </div>
@@ -58,12 +75,26 @@ const Container = styled.div`
   font-family: 'lato', sans-serif;
 }
 .container {
-  max-width: 1000px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 10px;
   padding-right: 10px;
 }
+button{
+  height: 2rem;
+  background-color: #263440;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  transition: 0.5s ease-in-out;
+    &:hover{
+        background-color: #4e0eff ;
+    }
+  }
 .container{
         
         }
@@ -112,7 +143,10 @@ h2 {
     flex-basis: 15%;
   }
   .col-5 {
-    flex-basis: 15%;
+    flex-basis: 10%;
+  }
+  .clo-6 {
+    flex-basis: 5%
   }
   @media all and (max-width: 767px) {
     .table-header {
