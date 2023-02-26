@@ -4,6 +4,11 @@ import styled from "styled-components";
 import Welcome from "./../components/welcome";
 export default function Dashboard() {
 
+  const handleclick=()=>{
+    localStorage.clear();
+    window.location.reload();
+  }
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,6 +84,7 @@ export default function Dashboard() {
           </ul>
         </li>
       </ul>
+      <a href="/login"><i className='cta btn-primary'></i><button onClick={handleclick}>LogOut</button></a>
     </nav>
   </aside>
   <span className="side">
@@ -245,4 +251,22 @@ Sidebar Nav
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+button{
+        background-color: #263440;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        position: fixed;
+        bottom: 50px;
+        left: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 0.4rem;
+        font-size: 1rem;
+        text-transform: uppercase;
+        transition: 0.5s ease-in-out;
+          &:hover{
+              background-color: #4e0eff ;
+          }
+        }
 `;
