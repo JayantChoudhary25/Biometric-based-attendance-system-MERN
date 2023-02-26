@@ -148,6 +148,7 @@ Sidebar
   background-color: #09f;
   width: 100%;
   display: block;
+  font-size: 20px;
   padding: 0.75em 1em;
 }
 
@@ -180,7 +181,7 @@ Sidebar Nav
   display: block;
   padding: 0;
   margin: 0;
-  margin-top:20px;
+  margin-top:40px;
   margin-bottom:20px;
 }
 .sidebar-nav ul li {
@@ -213,7 +214,7 @@ Sidebar Nav
   vertical-align: middle;
 }
 .sidebar-nav > ul > li > a:after {
-  content: "";
+  content: "⬅";
   font-family: ionicons;
   font-size: 0.5em;
   width: 10px;
@@ -258,7 +259,7 @@ button{
         border: none;
         position: fixed;
         bottom: 50px;
-        left: 10px;
+        left: 50px;
         font-weight: bold;
         cursor: pointer;
         border-radius: 0.4rem;
