@@ -80,7 +80,6 @@ function GetAllTeacher() {
                 <div className="col col-5" data-label="Class">{items._class}</div>
                 <div className='col col-6' data-label="Update"><button onClick={() => handleClick(items.email)} className="updatebutton" >Update</button></div>
                 <div className='col col-7' data-label="Delete"><button onClick={() => handleClick(items.email)} className="deleteButton" >Delete</button></div>
-                {/* <button type="button" class="col col-7" className='deleteButton'>Delete</button> */}
               </li>
             </ul>
           </div>
@@ -147,9 +146,9 @@ h2 {
 .closebutton {
     position:fixed;
     right:35%;
-    top:5%;
-    z-index: 2;
-    width:3rem;
+    top:11%;
+    z-index: 4;
+    width:  3rem;
     text-align: center;
     background-color: transparent;
     border: none;
@@ -168,7 +167,7 @@ h2 {
     padding: 25px 30px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
   }
   .table-header {
     background-color: #BFEAF5;
@@ -182,7 +181,7 @@ h2 {
     cursor: pointer;
         transition: 0.4s ease-in-out;
           &:hover{
-              background-color: #EAFDFC ;
+              background-color: #e1fcfb ;
           }
   }
   .col-1 {

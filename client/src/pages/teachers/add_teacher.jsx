@@ -29,7 +29,7 @@ function AddTeacher() {
       if(data.status === true){
         let mess = teacher_name+" added successfully.";
         alert(mess);
-        navigate("/teacher");
+        navigate("/");
       }else{
         toast.error(data.msg, toastOptions );
       }

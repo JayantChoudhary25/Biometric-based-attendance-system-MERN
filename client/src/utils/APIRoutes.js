@@ -13,4 +13,5 @@ export const addStudentRoute = `${host}/api/auth/student/add_student`;
 export const getAllStudentRoute = `${host}/api/auth/student/get_all_student`;
 export const updateStudentRoute = `${host}/api/auth/student/update_student`;
 export const deleteStudentRoute = `${host}/api/auth/student/delete_student`;
+export const getStudentByIDRoute = `${host}/api/auth/student/get_student_byID`;
 
