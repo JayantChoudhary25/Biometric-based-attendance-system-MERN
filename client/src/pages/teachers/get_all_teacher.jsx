@@ -64,6 +64,7 @@ function GetAllTeacher() {
                 <div className="col col-4" >Subject</div>
                 <div className="col col-5" >Class </div>
                 <div className='col col-6' >Update</div>
+                <div className='col col-7' >Delete</div>
               </li>
             </ul>
           </div>
@@ -78,6 +79,8 @@ function GetAllTeacher() {
                 <div className="col col-4" data-label="Subject">{items.subject}</div>
                 <div className="col col-5" data-label="Class">{items._class}</div>
                 <div className='col col-6' data-label="Update"><button onClick={() => handleClick(items.email)} className="updatebutton" >Update</button></div>
+                <div className='col col-7' data-label="Delete"><button onClick={() => handleClick(items.email)} className="deleteButton" >Delete</button></div>
+                {/* <button type="button" class="col col-7" className='deleteButton'>Delete</button> */}
               </li>
             </ul>
           </div>
@@ -108,7 +111,7 @@ const Container = styled.div`
 .updatebutton{
   height: 2rem;
   background-color: #263440;
-  color: white;
+  color: #6ffc89;
   border: none;
   font-weight: bold;
   cursor: pointer;
@@ -119,6 +122,20 @@ const Container = styled.div`
         background-color: #4e0eff ;
     }
   }
+.deleteButton{
+  height: 2rem;
+  background-color: #263440;
+  color: #fa6161;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  transition: 0.5s ease-in-out;
+    &:hover{
+        background-color: #4e0eff ;
+    }
+}
 h2 {
   font-size: 26px;
   margin: 20px 0;
@@ -157,7 +174,7 @@ h2 {
     background-color: #BFEAF5;
     font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.07em;
   }
   .table-row {
     background-color: #ffffff;
@@ -172,7 +189,7 @@ h2 {
     flex-basis: 20%;
   }
   .col-2 {
-    flex-basis: 30%;
+    flex-basis: 20%;
   }
   .col-3 {
     flex-basis: 20%;
@@ -185,6 +202,9 @@ h2 {
   }
   .clo-6 {
     flex-basis: 5%
+  }
+  .clo-7 {
+    flex-basis: 10%
   }
   @media all and (max-width: 767px) {
     .table-header {
