@@ -4,12 +4,20 @@ import axios from "axios";
 import styled from 'styled-components';
 import {getAllTeacherRoute, getTeacherByIDRoute} from '../../utils/APIRoutes';
 import UpdateTeacher from '../../components/update_teacher';
+import { GrClose } from 'react-icons/gr';
 
 function GetAllTeacher() {
   const navigate = useNavigate();
   const [allTeachers , setAllTeachers] = useState([]);
   const [updateSelected , setUpdateSelected] = useState(false);
-
+  const [myvalues,setValues] = useState({
+    myteacher_name: "",
+    myemail: "",
+    myphone_number: "",
+    mysubject: "",
+    my_class: "",
+    myid: "",
+  });
   const myfunc = async ()=>{
     const response = await axios.post(getAllTeacherRoute);
     setAllTeachers(response.data.result);
@@ -19,15 +27,31 @@ function GetAllTeacher() {
   },[]);
   const handleClick = async (email) => {
     const myData = await axios.post(getTeacherByIDRoute,{email:email} );
-    console.log(myData.data.result);
+    setValues({
+      myteacher_name:myData.data.result.teacher_name,
+      myemail:myData.data.result.email,
+      myphone_number:myData.data.result.phone_number,
+      mysubject:myData.data.result.subject,
+      my_class:myData.data.result._class,
+      myid:myData.data.result._id,
+    })
     setUpdateSelected(true);
   };
+
+  const handleCLose = () => {
+    setUpdateSelected(false);
+  }
   return (
     <Container>
-    <div className='updateform'>
+    <div className='updateform' >
     {
         updateSelected === true ? 
-        (<UpdateTeacher />):<></>
+        (
+        <div>
+          <div className='closebutton' onClick={handleCLose}><GrClose/></div>
+          <UpdateTeacher myvalues={myvalues} /> 
+        </div>
+        ):<></>
     }
     </div>
     <div >
@@ -53,7 +77,7 @@ function GetAllTeacher() {
                 <div className="col col-3" data-label="Phone Number">{items.phone_number}</div>
                 <div className="col col-4" data-label="Subject">{items.subject}</div>
                 <div className="col col-5" data-label="Class">{items._class}</div>
-                <div className='col col-6' data-label="Update"><button onClick={() => handleClick(items.email)} >Update</button></div>
+                <div className='col col-6' data-label="Update"><button onClick={() => handleClick(items.email)} className="updatebutton" >Update</button></div>
               </li>
             </ul>
           </div>
@@ -81,7 +105,7 @@ const Container = styled.div`
   padding-left: 10px;
   padding-right: 10px;
 }
-button{
+.updatebutton{
   height: 2rem;
   background-color: #263440;
   color: white;
@@ -95,9 +119,6 @@ button{
         background-color: #4e0eff ;
     }
   }
-.container{
-        
-        }
 h2 {
   font-size: 26px;
   margin: 20px 0;
@@ -106,7 +127,24 @@ h2 {
     font-size: 0.5em;
   }
 }
-
+.closebutton {
+    position:fixed;
+    right:35%;
+    top:5%;
+    z-index: 2;
+    width:3rem;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius:0.2rem;
+    font-size: 1.5rem;
+    transition: 0.2s ease-in-out;
+      &:hover{
+          background-color: #997af0 ;
+      }
+  }
 .responsive-table {
   li {
     border-radius: 3px;

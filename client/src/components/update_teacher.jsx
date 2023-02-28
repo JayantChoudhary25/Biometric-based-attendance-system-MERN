@@ -1,38 +1,45 @@
-import React, { useState , useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
-import styled from 'styled-components'
-import "react-toastify/dist/ReactToastify.css"; 
-import Logo from "../assets/logo.svg";
 import axios from 'axios';
-import { updateTeacherRoute } from '../utils/APIRoutes';
+import { updateTeacherRoute} from "../utils/APIRoutes";
+function UpdateTeacher({myvalues}) {
 
-function UpdateTeacher() {
   const navigate = useNavigate();
+ 
   const [values,setValues] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    teacher_name: myvalues.myteacher_name,
+    email: myvalues.myemail,
+    phone_number: myvalues.myphone_number,
+    subject: myvalues.mysubject,
+    _class: myvalues.my_class,
+    _id: myvalues.myid,
   });
+
+console.log(values);
   const handleSubmit = async (event) =>{
     event.preventDefault();
     if(handleValidation()){
-      const {password, username, email } = values;
+    const {teacher_name, email,phone_number,subject,_class ,_id} = values;
       try{const {data}  = await axios.post(updateTeacherRoute,{
-        username,
+        teacher_name,
         email,
-        password,
+        phone_number,
+        subject,
+        _class,
+        _id,
       });
       if(data.status === true){
-        localStorage.setItem('user-data',JSON.stringify(data.user) );
+        let mess = teacher_name+" updated successfully.";
+        alert(mess);
+        window.location.reload();
       }else{
         toast.error(data.msg, toastOptions );
       }
     }catch(error){
         console.log(error.response.data);
       }
-      navigate("/login");
     }
   };
 
@@ -45,19 +52,19 @@ function UpdateTeacher() {
   };
 
   const handleValidation = () => {
-    const {password, confirmPassword, username, email } = values;
+    const {teacher_name, email,subject,_class } = values;
 
-    if(password !== confirmPassword){
-      toast.error("Password and confirm password must be same.", toastOptions);
-      return false;
-    } else if (username.length<3){
-      toast.error("User name must be greater than 3 characters.", toastOptions);
-      return false;
-    } else if (password.length<8){
-      toast.error("Password must be greater than 8 characters.", toastOptions);
+    if (teacher_name.length<3){
+      toast.error("Teacher name must be greater than 3 characters.", toastOptions);
       return false;
     } else if (email ===""){
       toast.error("Email is required.", toastOptions);
+      return false;
+    } else if (subject ===""){
+      toast.error("Subject is required.", toastOptions);
+      return false;
+    } else if (_class ===""){
+      toast.error("Class is required.", toastOptions);
       return false;
     } else {
       return true; 
@@ -70,21 +77,22 @@ function UpdateTeacher() {
 
   return (
     <>
-      <FormContainer>
+      <AddTeacherContainer>
         <form onSubmit={(event)=> handleSubmit(event)}>
           <div className='brand'>
-            <img src={Logo} alt='Logo' />
-            <h1>Update</h1>
+            <h1>Update Teacher</h1>
           </div>
           
           <input 
+          value={values.teacher_name}
           type="text" 
-          placeholder="Username" 
-          name='username' 
+          placeholder="Name" 
+          name='teacher_name' 
           onChange={(e)=>handleChange(e)}
           />
 
           <input 
+          value={values.email}
           type="email" 
           placeholder="Email" 
           name='email' 
@@ -92,30 +100,39 @@ function UpdateTeacher() {
           />
 
           <input 
-          type="password" 
-          placeholder="Password" 
-          name='password' 
+          value={values.phone_number}
+          type="string" 
+          placeholder="Phone Number" 
+          name='phone_number' 
           onChange={ (e) =>handleChange(e)}
           />
 
-          <input  
-          type="password" 
-          placeholder="Confirm Password" 
-          name='confirmPassword' 
+          <input 
+          value={values.subject}
+          type="text" 
+          placeholder="Subject"
+          name='subject' 
           onChange={ (e) =>handleChange(e)}
           />
 
-          <button type='submit'>Update User</button>
-          <button type='submit'>Delete User</button>
-
+          <input 
+          value={values._class}
+          type="string" 
+          placeholder="Class" 
+          name='_class' 
+          onChange={ (e) =>handleChange(e)}
+          />
+          <button type='submit' className='subbmitbutton'>Update Teacher</button>
         </form>
-      </FormContainer>
+      </AddTeacherContainer>
       <ToastContainer />
     </>
   )
 }
 
-const FormContainer = styled.div`
+const AddTeacherContainer = styled.div`
+  position:fixed;
+  z-index: 1;
   height: 100vh;
   width: 100vw;
     display: flex;
@@ -123,15 +140,14 @@ const FormContainer = styled.div`
     justify-content: center;
     gap: 1rem;
     align-items: center;
-    background-color: #d5f7f6;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    border-radius: 1.5rem;
     .brand{
         display: flex ;
         align-items: center;
         gap: 1rem;
-        justify-content: center;
-        img{
-            height: 5rem;
-        } 
+        justify-content: center; 
         h1{
         color: black;
         text-transform: uppercase;
@@ -139,9 +155,10 @@ const FormContainer = styled.div`
     }
     form{
         display: flex;
+        width:22vw;
         flex-direction: column;
         gap: 2rem;
-        background-color: #BFEAF5;
+        background-color: #EEEEEE;
         border-radius: 2rem;
         padding: 3rem 5rem;
         input{
@@ -157,7 +174,7 @@ const FormContainer = styled.div`
             outline : none;
         }
         }
-        button{
+        .subbmitbutton{
         background-color: #997af0;
         color: white;
         padding: 1rem 2rem;

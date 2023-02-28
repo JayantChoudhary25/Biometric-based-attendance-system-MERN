@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Welcome from "./../components/welcome";
+
 export default function Dashboard() {
 
   const handleclick=()=>{
@@ -216,12 +217,11 @@ Sidebar Nav
 .sidebar-nav > ul > li > a:after {
   content: "⬅";
   font-family: ionicons;
-  font-size: 0.5em;
-  width: 10px;
-  color: #fff;
+  font-size: 1.2rem;
+  color: #4e0eff;
   position: absolute;
   right: 0.75em;
-  top: 45%;
+  top: 30%;
 }
 .sidebar-nav .nav-flyout {
   position: absolute;

@@ -51,15 +51,12 @@ exports.remove_teacher = async (req, res, next) => {
 exports.update_teacher = async (req, res, next) => {
     const { teacher_name, phone_number, email, subject, _class } = req.body;
     try {
-      const result = await Teacher.updateMany({
+      const result = await Teacher.findByIdAndUpdate(req.body._id, {
         teacher_name,
         email,
         phone_number,
         subject,
         _class,
-        where: {
-            _id: req.body._id
-        }
       });
       return res.json({ msg: "Teacher Updated", status: true });
     } catch (error) {
