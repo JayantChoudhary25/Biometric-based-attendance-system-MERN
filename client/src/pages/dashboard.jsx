@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Welcome from "./../components/welcome";
-
+import { GiTeacher } from 'react-icons/gi';
+import { FaUserGraduate } from 'react-icons/fa';
+import { MdFingerprint } from 'react-icons/md';
+import { MdPersonAdd } from 'react-icons/md';
+import { FaEye } from 'react-icons/fa';
+import { TbLayoutDashboard } from 'react-icons/tb';    
 export default function Dashboard() {
 
   const handleclick=()=>{
@@ -28,6 +33,7 @@ export default function Dashboard() {
   <aside className="sidebar">
       <header>
       <a href="/">
+      <TbLayoutDashboard className="ico" />
         Dashboard
       </a>  
       </header>
@@ -35,52 +41,37 @@ export default function Dashboard() {
  
       <ul>
         <li>
-          <a href="/"><i className="ion-bag"></i> <span>Teacher</span></a>
+          <a href="/"><i className="ion-bag"></i> <span><GiTeacher className="ico" />  Teacher</span></a>
           <ul className="nav-flyout">
             <li>
-              <a href="teacher/add_teacher"><i className="ion-ios-color-filter-outline"></i><link to=""></link>Add Teacher</a>
+              <a href="teacher/add_teacher"><i className="ion-ios-color-filter-outline"></i><link to=""></link><MdPersonAdd className="ico" /> Add Teacher</a>
             </li>
             <li>
-              <a href="teacher/get_all_teacher"><i className="ion-ios-clock-outline"></i>Get All Teacher</a>
-            </li>
-            <li>
-              <a href="teacher/update_teacher"><i className="ion-android-star-outline"></i>Update Teacher</a>
-            </li>
-            <li>
-              <a href="teacher/delete_teacher"><i className="ion-heart-broken"></i>Delete Teacher</a>
+              <a href="teacher/get_all_teacher"><i className="ion-ios-clock-outline"></i><FaEye className="ico" /> View Teachers</a>
             </li>
           </ul>
         </li>
         <li></li>
         <li>
-          <a href="/"><i className="ion-ios-settings"></i> <span className="">Student</span></a>
+          <a href="/"><i className="ion-ios-settings"></i> <span className=""><FaUserGraduate className="ico" />Student</span></a>
           <ul className="nav-flyout">
             <li>
-              <a href="/student/add_student"><i className="ion-ios-alarm-outline"></i>Add Student</a>
+              <a href="/student/add_student"><i className="ion-ios-alarm-outline"></i><MdPersonAdd className="ico" />Add Student</a>
             </li>
             <li>
-              <a href="/student/get_all_student"><i className="ion-ios-camera-outline"></i>Get All Student</a>
-            </li>
-            <li>
-              <a href="/student/update_student"><i className="ion-ios-chatboxes-outline"></i>Update Student</a>
-            </li>
-            <li>
-              <a href="/student/delete_student"><i className="ion-ios-cog-outline"></i>Delete Student</a>
+              <a href="/student/get_all_student"><i className="ion-ios-camera-outline"></i><FaEye className="ico" />View Students</a>
             </li>
           </ul>
         </li>
         <li></li>
         <li>
-          <a href="/"><i className="ion-ios-briefcase-outline"></i> <span className="">Biometric</span></a>
+          <a href="/"><i className="ion-ios-briefcase-outline"></i> <span className=""><MdFingerprint className="ico" />Biometric</span></a>
           <ul className="nav-flyout">
             <li>
-              <a href="/"><i className="ion-ios-flame-outline"></i>Add New Biometric</a>
+              <a href="/"><i className="ion-ios-flame-outline"></i><MdPersonAdd className="ico" />Add Biometric</a>
             </li>
             <li>
-              <a href="/"><i className="ion-ios-lightbulb-outline"></i>Upgrade Biometric</a>
-            </li>
-            <li>
-              <a href="/"><i className="ion-ios-location-outline"></i>Get Biometric</a>
+              <a href="/"><i className="ion-ios-lightbulb-outline"></i><FaEye className="ico" />View Biometric</a>
             </li>
           </ul>
         </li>
@@ -130,7 +121,9 @@ a:hover {
 .app {
   height: 100vh;
 }
-
+.ico{
+  margin-right: 15px;
+}
 /* -------------
 Sidebar
 ----------------*/
@@ -218,7 +211,7 @@ Sidebar Nav
   content: "⬅";
   font-family: ionicons;
   font-size: 1.2rem;
-  color: #4e0eff;
+  color: white;
   position: absolute;
   right: 0.75em;
   top: 30%;

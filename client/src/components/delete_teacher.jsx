@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-import { updateTeacherRoute} from "../utils/APIRoutes";
+import { deleteTeacherRoute} from "../utils/APIRoutes";
 
-function UpdateTeacher({myvalues}) {
+function DeleteTeacher({myvalues}) {
 
   const navigate = useNavigate();
  
@@ -20,9 +20,9 @@ function UpdateTeacher({myvalues}) {
 
   const handleSubmit = async (event) =>{
     event.preventDefault();
-    if(handleValidation()){
+    
     const {teacher_name, email,phone_number,subject,_class ,_id} = values;
-      try{const {data}  = await axios.post(updateTeacherRoute,{
+      try{const {data}  = await axios.post(deleteTeacherRoute,{
         teacher_name,
         email,
         phone_number,
@@ -31,7 +31,7 @@ function UpdateTeacher({myvalues}) {
         _id,
       });
       if(data.status === true){
-        let mess = teacher_name+" updated successfully.";
+        let mess = teacher_name+" Deleted successfully.";
         alert(mess);
         window.location.reload();
       }else{
@@ -40,7 +40,7 @@ function UpdateTeacher({myvalues}) {
     }catch(error){
         console.log(error.response.data);
       }
-    }
+    
   };
 
   const toastOptions = {
@@ -49,26 +49,6 @@ function UpdateTeacher({myvalues}) {
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
-  };
-
-  const handleValidation = () => {
-    const {teacher_name, email,subject,_class } = values;
-
-    if (teacher_name.length<3){
-      toast.error("Teacher name must be greater than 3 characters.", toastOptions);
-      return false;
-    } else if (email ===""){
-      toast.error("Email is required.", toastOptions);
-      return false;
-    } else if (subject ===""){
-      toast.error("Subject is required.", toastOptions);
-      return false;
-    } else if (_class ===""){
-      toast.error("Class is required.", toastOptions);
-      return false;
-    } else {
-      return true; 
-    }
   };
 
   const handleChange = (event) => {
@@ -80,7 +60,7 @@ function UpdateTeacher({myvalues}) {
       <AddTeacherContainer>
         <form onSubmit={(event)=> handleSubmit(event)}>
           <div className='brand'>
-            <h1>Update Teacher</h1>
+            <h1>Delete Teacher</h1>
           </div>
           
           <input 
@@ -122,7 +102,7 @@ function UpdateTeacher({myvalues}) {
           name='_class' 
           onChange={ (e) =>handleChange(e)}
           />
-          <button type='submit' className='subbmitbutton'>Update Teacher</button>
+          <button type='submit' className='subbmitbutton'>Delete Teacher</button>
         </form>
       </AddTeacherContainer>
       <ToastContainer />
@@ -201,4 +181,4 @@ const AddTeacherContainer = styled.div`
       }
 `;
 
-export default UpdateTeacher;
+export default DeleteTeacher;

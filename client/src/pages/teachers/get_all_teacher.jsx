@@ -4,12 +4,15 @@ import axios from "axios";
 import styled from 'styled-components';
 import {getAllTeacherRoute, getTeacherByIDRoute} from '../../utils/APIRoutes';
 import UpdateTeacher from '../../components/update_teacher';
+import DeleteTeacher from '../../components/delete_teacher';
 import { GrClose } from 'react-icons/gr';
 
 function GetAllTeacher() {
   const navigate = useNavigate();
   const [allTeachers , setAllTeachers] = useState([]);
   const [updateSelected , setUpdateSelected] = useState(false);
+  const [deleteSelected , setDeleteSelected] = useState(false);
+
   const [myvalues,setValues] = useState({
     myteacher_name: "",
     myemail: "",
@@ -25,7 +28,7 @@ function GetAllTeacher() {
   useEffect(() => {
     myfunc();
   },[]);
-  const handleClick = async (email) => {
+  const handleUpdateClick = async (email) => {
     const myData = await axios.post(getTeacherByIDRoute,{email:email} );
     setValues({
       myteacher_name:myData.data.result.teacher_name,
@@ -37,9 +40,23 @@ function GetAllTeacher() {
     })
     setUpdateSelected(true);
   };
+  
+  const handleDeleteClick = async (email) => {
+    const myData = await axios.post(getTeacherByIDRoute,{email:email});
+    setValues({
+      myteacher_name:myData.data.result.teacher_name,
+      myemail:myData.data.result.email,
+      myphone_number:myData.data.result.phone_number,
+      mysubject:myData.data.result.subject,
+      my_class:myData.data.result._class,
+      myid:myData.data.result._id,
+    })
+    setDeleteSelected(true);
+  };
 
   const handleCLose = () => {
     setUpdateSelected(false);
+    setDeleteSelected(false);
   }
   return (
     <Container>
@@ -53,18 +70,27 @@ function GetAllTeacher() {
         </div>
         ):<></>
     }
+    {
+        deleteSelected === true ? 
+        (
+        <div>
+          <div className='closebutton' onClick={handleCLose}><GrClose/></div>
+          <DeleteTeacher myvalues={myvalues} /> 
+        </div>
+        ):<></>
+    }
     </div>
     <div >
     <div className="container">
             <ul className="responsive-table">
             <li className="table-header">
-                <div className="col col-1" >Teacher Name</div>
-                <div className="col col-2" >Email</div>
-                <div className="col col-3" >Phone Number</div>
-                <div className="col col-4" >Subject</div>
-                <div className="col col-5" >Class </div>
-                <div className='col col-6' >Update</div>
-                <div className='col col-7' >Delete</div>
+                <div className="col col-1" ><b>Teacher Name</b></div>
+                <div className="col col-2" ><b>Email</b></div>
+                <div className="col col-3" ><b>Phone Number</b></div>
+                <div className="col col-4" ><b>Subject</b></div>
+                <div className="col col-5" ><b>Class </b></div>
+                <div className='col col-6' ><b>Update</b></div>
+                <div className='col col-7' ><b>Delete</b></div>
               </li>
             </ul>
           </div>
@@ -78,8 +104,8 @@ function GetAllTeacher() {
                 <div className="col col-3" data-label="Phone Number">{items.phone_number}</div>
                 <div className="col col-4" data-label="Subject">{items.subject}</div>
                 <div className="col col-5" data-label="Class">{items._class}</div>
-                <div className='col col-6' data-label="Update"><button onClick={() => handleClick(items.email)} className="updatebutton" >Update</button></div>
-                <div className='col col-7' data-label="Delete"><button onClick={() => handleClick(items.email)} className="deleteButton" >Delete</button></div>
+                <div className='col col-6' data-label="Update"><button onClick={() => handleUpdateClick(items.email)} className="updatebutton" >Update</button></div>
+                <div className='col col-7' data-label="Delete"><button onClick={() => handleDeleteClick(items.email)} className="deleteButton" >Delete</button></div>
               </li>
             </ul>
           </div>
@@ -116,9 +142,10 @@ const Container = styled.div`
   cursor: pointer;
   border-radius: 0.3rem;
   font-size: 1rem;
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
     &:hover{
         background-color: #4e0eff ;
+        color:white;
     }
   }
 .deleteButton{
@@ -130,9 +157,10 @@ const Container = styled.div`
   cursor: pointer;
   border-radius: 0.3rem;
   font-size: 1rem;
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
     &:hover{
         background-color: #4e0eff ;
+        color:white;
     }
 }
 h2 {

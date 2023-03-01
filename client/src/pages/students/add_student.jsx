@@ -144,9 +144,6 @@ const AddStudentContainer = styled.div`
         align-items: center;
         gap: 1rem;
         justify-content: center;
-        img{
-            height: 5rem;
-        } 
         h1{
         color: black;
         text-transform: uppercase;
@@ -155,7 +152,7 @@ const AddStudentContainer = styled.div`
     form{
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
         background-color: #BFEAF5;
         border-radius: 2rem;
         padding: 3rem 5rem;

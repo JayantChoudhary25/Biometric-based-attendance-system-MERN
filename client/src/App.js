@@ -6,12 +6,11 @@ import Dashboard from './pages/dashboard';
 import GetAllTeacher from './pages/teachers/get_all_teacher';
 import AddTeacher from './pages/teachers/add_teacher';
 import UpdateTeacher from './components/update_teacher';
-import DeleteTeacher from './pages/teachers/delete_teacher';
+import DeleteTeacher from './components/delete_teacher';
 import UpdateStudent from './pages/students/update_student';
 import DeleteStudent from './pages/students/delete_student';
 import AddStudent from './pages/students/add_student';
 import GetAllStudent from "./pages/students/get_all_student";
-import ListTeacherComponent from "./pages/teachers/ListTeacherComponent";
 
 export default function App() {
   return (
