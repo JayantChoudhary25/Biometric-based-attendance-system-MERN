@@ -41,8 +41,8 @@ exports.remove_student = async (req, res, next) => {
 };
 exports.get_student_byID = async (req, res, next) => {
   try {
-    const computer_code = req.body.email;
-    const result = await Student.findOne({computer_code},{_id:1,student_name:1,computer_code:1,email:1,subjects:1,course:1,_class:1});
+    const email = req.body.email;
+    const result = await Student.findOne({email},{_id:1,student_name:1,computer_code:1,email:1,subjects:1,course:1,_class:1});
     return res.json({result});
   } catch (error) {
     next(error);

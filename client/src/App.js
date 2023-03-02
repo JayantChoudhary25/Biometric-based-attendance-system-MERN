@@ -7,8 +7,8 @@ import GetAllTeacher from './pages/teachers/get_all_teacher';
 import AddTeacher from './pages/teachers/add_teacher';
 import UpdateTeacher from './components/update_teacher';
 import DeleteTeacher from './components/delete_teacher';
-import UpdateStudent from './pages/students/update_student';
-import DeleteStudent from './pages/students/delete_student';
+import UpdateStudent from "./components/update_student";
+import DeleteStudent from './components/delete_student';
 import AddStudent from './pages/students/add_student';
 import GetAllStudent from "./pages/students/get_all_student";
 

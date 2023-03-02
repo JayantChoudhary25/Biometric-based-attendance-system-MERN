@@ -8,6 +8,7 @@ import { MdFingerprint } from 'react-icons/md';
 import { MdPersonAdd } from 'react-icons/md';
 import { FaEye } from 'react-icons/fa';
 import { TbLayoutDashboard } from 'react-icons/tb';    
+import { SlLogout } from 'react-icons/sl';    
 export default function Dashboard() {
 
   const handleclick=()=>{
@@ -76,7 +77,7 @@ export default function Dashboard() {
           </ul>
         </li>
       </ul>
-      <a href="/login"><i className='cta btn-primary'></i><button onClick={handleclick}>LogOut</button></a>
+      <a href="/login"><i className='cta btn-primary'></i><button onClick={handleclick}><SlLogout className="out"/> LogOut</button></a>
     </nav>
   </aside>
   <span className="side">
@@ -122,7 +123,12 @@ a:hover {
   height: 100vh;
 }
 .ico{
-  margin-right: 15px;
+  margin-right: 10px;
+  position: relative;
+}
+.out{
+  margin-right: 5px;
+  position: relative;
 }
 /* -------------
 Sidebar
