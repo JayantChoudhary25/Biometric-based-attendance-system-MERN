@@ -55,51 +55,11 @@ function DeleteStudent({myvalues}) {
   return (
     <>
       <AddStudentContainer>
-        <form onSubmit={(event)=> handleSubmit(event)}>
+      <form onSubmit={(event)=> handleSubmit(event)}>
           <div className='brand'>
-            <h1>Delete Student</h1>
+            <h1>Are you sure you want to Delete {values.student_name}</h1>
           </div>
-          
-          <input 
-          value={values.student_name}
-          type="text" 
-          placeholder="Name" 
-          name='teacher_name' 
-          onChange={(e)=>handleChange(e)}
-          />
-
-          <input 
-          value={values.email}
-          type="email" 
-          placeholder="Email" 
-          name='email' 
-          onChange={(e) => handleChange(e)}
-          />
-
-          <input 
-          value={values.phone_number}
-          type="string" 
-          placeholder="Phone Number" 
-          name='phone_number' 
-          onChange={ (e) =>handleChange(e)}
-          />
-
-          <input 
-          value={values.subject}
-          type="text" 
-          placeholder="Subject"
-          name='subject' 
-          onChange={ (e) =>handleChange(e)}
-          />
-
-          <input 
-          value={values._class}
-          type="string" 
-          placeholder="Class" 
-          name='_class' 
-          onChange={ (e) =>handleChange(e)}
-          />
-          <button type='submit' className='subbmitbutton'>Delete Teacher</button>
+          <button type='submit' className='subbmitbutton'>Delete</button>
         </form>
       </AddStudentContainer>
       <ToastContainer />

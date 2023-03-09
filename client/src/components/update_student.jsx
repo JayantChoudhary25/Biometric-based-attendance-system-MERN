@@ -6,30 +6,31 @@ import axios from 'axios';
 import { updateStudentRoute } from "../utils/APIRoutes";
 
 function UpdateStudent({myvalues}) {
-
   const [values,setValues] = useState({
     student_name: myvalues.mystudent_name,
     email: myvalues.myemail,
-    phone_number: myvalues.myphone_number,
-    subject: myvalues.mysubject,
+    course: myvalues.mycourse,
+    computer_code: myvalues.mycomputer_code,
     _class: myvalues.my_class,
+    subjects: myvalues.subjects,
     _id: myvalues.myid,
   });
 
   const handleSubmit = async (event) =>{
     event.preventDefault();
     if(handleValidation()){
-    const {student_name, email,phone_number,subject,_class ,_id} = values;
+    const {student_name, email,computer_code,subjects,course,_class ,_id} = values;
       try{const {data}  = await axios.post(updateStudentRoute,{
         student_name,
+        computer_code,
         email,
-        phone_number,
-        subject,
+        course,
+        subjects,
         _class,
         _id,
       });
       if(data.status === true){
-        let mess = student_name+" updated successfully.";
+        let mess = student_name+" Updated successfully.";
         alert(mess);
         window.location.reload();
       }else{
@@ -50,7 +51,7 @@ function UpdateStudent({myvalues}) {
   };
 
   const handleValidation = () => {
-    const {student_name, email,subject,_class } = values;
+    const {student_name, email,course,_class } = values;
 
     if (student_name.length<3){
       toast.error("Student  name must be greater than 3 characters.", toastOptions);
@@ -58,7 +59,7 @@ function UpdateStudent({myvalues}) {
     } else if (email ===""){
       toast.error("Email is required.", toastOptions);
       return false;
-    } else if (subject ===""){
+    } else if (course ===[]){
       toast.error("Subject is required.", toastOptions);
       return false;
     } else if (_class ===""){
@@ -98,7 +99,7 @@ function UpdateStudent({myvalues}) {
           />
 
           <input 
-          value={values.phone_number}
+          value={values.computer_code}
           type="string" 
           placeholder="Phone Number" 
           name='phone_number' 
@@ -106,9 +107,9 @@ function UpdateStudent({myvalues}) {
           />
 
           <input 
-          value={values.subject}
+          value={values.subjects}
           type="text" 
-          placeholder="Subject"
+          placeholder="Subjects"
           name='subject' 
           onChange={ (e) =>handleChange(e)}
           />

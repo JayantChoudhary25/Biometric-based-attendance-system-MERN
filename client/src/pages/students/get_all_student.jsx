@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import {getAllStudentRoute , getStudentByIDRoute} from '../../utils/APIRoutes';
-import UpdateStudent from '../../components/update_teacher';
-import DeleteStudent from '../../components/delete_teacher';
+import UpdateStudent from '../../components/update_student';
+import DeleteStudent from '../../components/delete_student';
 import { GrClose } from 'react-icons/gr';
 
 function GetAllStudent() {
@@ -13,10 +13,10 @@ function GetAllStudent() {
   const [deleteSelected , setDeleteSelected] = useState(false);
 
   const [myvalues,setValues] = useState({
-    myteacher_name: "",
+    mystudent_name: "",
     myemail: "",
-    myphone_number: "",
-    mysubject: "",
+    mycomputer_code: "",
+    mycourse: "",
     my_class: "",
     myid: "",
   });
@@ -35,12 +35,11 @@ function GetAllStudent() {
     setValues({
       mystudent_name:myData.data.result.student_name,
       myemail:myData.data.result.email,
-      myphone_number:myData.data.result.phone_number,
-      mysubject:myData.data.result.subject,
+      mycomputer_code:myData.data.result.computer_code,
+      mycourse:myData.data.result.course,
       my_class:myData.data.result._class,
       myid:myData.data.result._id,
     })
-    console.log(myvalues);
     setUpdateSelected(true);
   };
   
@@ -49,8 +48,8 @@ function GetAllStudent() {
     setValues({
       mystudent_name:myData.data.result.student_name,
       myemail:myData.data.result.email,
-      myphone_number:myData.data.result.phone_number,
-      mysubject:myData.data.result.subject,
+      mycomputer_code:myData.data.result.computer_code,
+      mycourse:myData.data.result.course,
       my_class:myData.data.result._class,
       myid:myData.data.result._id,
     })
@@ -69,7 +68,7 @@ function GetAllStudent() {
         updateSelected === true ? 
         (
         <div>
-          <div className='closebutton' onClick={handleCLose}><GrClose/></div>
+          <div className='updateclosebutton' onClick={handleCLose}><GrClose/></div>
           <UpdateStudent myvalues={myvalues} /> 
         </div>
         ):<></>
@@ -78,7 +77,7 @@ function GetAllStudent() {
         deleteSelected === true ? 
         (
         <div>
-          <div className='closebutton' onClick={handleCLose}><GrClose/></div>
+          <div className='deleteclosebutton' onClick={handleCLose}><GrClose/></div>
           <DeleteStudent myvalues={myvalues} /> 
         </div>
         ):<></>
@@ -168,10 +167,28 @@ const Container = styled.div`
         color:white;
     }
 }
-.closebutton {
+.updateclosebutton {
     position:fixed;
     right:35%;
     top:11%;
+    z-index: 4;
+    width:  3rem;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius:0.2rem;
+    font-size: 1.5rem;
+    transition: 0.2s ease-in-out;
+      &:hover{
+          background-color: #997af0 ;
+      }
+  }
+  .deleteclosebutton {
+    position:fixed;
+    right:35%;
+    top:32%;
     z-index: 4;
     width:  3rem;
     text-align: center;

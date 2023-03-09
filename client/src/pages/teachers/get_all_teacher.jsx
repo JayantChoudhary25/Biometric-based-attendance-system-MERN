@@ -65,7 +65,7 @@ function GetAllTeacher() {
         updateSelected === true ? 
         (
         <div>
-          <div className='closebutton' onClick={handleCLose}><GrClose/></div>
+          <div className='updateclosebutton' onClick={handleCLose}><GrClose/></div>
           <UpdateTeacher myvalues={myvalues} /> 
         </div>
         ):<></>
@@ -74,7 +74,7 @@ function GetAllTeacher() {
         deleteSelected === true ? 
         (
         <div>
-          <div className='closebutton' onClick={handleCLose}><GrClose/></div>
+          <div className='deleteclosebutton' onClick={handleCLose}><GrClose/></div>
           <DeleteTeacher myvalues={myvalues} /> 
         </div>
         ):<></>
@@ -171,10 +171,28 @@ h2 {
     font-size: 0.5em;
   }
 }
-.closebutton {
+.updateclosebutton {
     position:fixed;
     right:35%;
     top:11%;
+    z-index: 4;
+    width:  3rem;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius:0.2rem;
+    font-size: 1.5rem;
+    transition: 0.2s ease-in-out;
+      &:hover{
+          background-color: #997af0 ;
+      }
+  }
+  .deleteclosebutton {
+    position:fixed;
+    right:35%;
+    top:32%;
     z-index: 4;
     width:  3rem;
     text-align: center;
