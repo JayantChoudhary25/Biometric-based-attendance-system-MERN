@@ -5,7 +5,8 @@ import {getAllStudentRoute , getStudentByIDRoute} from '../../utils/APIRoutes';
 import UpdateStudent from '../../components/update_student';
 import DeleteStudent from '../../components/delete_student';
 import { GrClose } from 'react-icons/gr';
-
+import * as FileSaver from 'file-saver';
+import XLSX from 'sheetjs-style';
 function GetAllStudent() {
 
   const [allStudent , setAllStudent] = useState([]);
@@ -56,6 +57,23 @@ function GetAllStudent() {
     setDeleteSelected(true);
   };
 
+  const handleExportClick = async () => {
+    if(window.confirm("Download excel") == true){
+    const excelData = allStudent;
+    const fileType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
+    const fileExtension = ".xlsx"; 
+    const fileName = "Student_data";
+    const exportToExcel = async () => {
+        const ws = XLSX.utils.json_to_sheet (excelData); 
+        const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] }; 
+        const excelBuffer = XLSX.write(wb, {bookType: 'xlsx', type: 'array' }); 
+        const data = new Blob([excelBuffer], { type: fileType }); 
+        FileSaver.saveAs (data, fileName + fileExtension);
+    }
+    exportToExcel(fileName);
+  }
+  }
+
   const handleCLose = () => {
     setUpdateSelected(false);
     setDeleteSelected(false);
@@ -85,6 +103,11 @@ function GetAllStudent() {
     </div>
     <div >
     <div className="container">
+            <ul className="responsive-table">
+            <li className="table-header">
+                <div className="exportbtn" ><b><button onClick={() => handleExportClick()} className="exportbutton" >EXPORT DATA</button></b></div>
+            </li>
+            </ul>
             <ul className="responsive-table">
             <li className="table-header">
                 <div className="col col-1" ><b>Student Name</b></div>
@@ -203,6 +226,24 @@ const Container = styled.div`
           background-color: #997af0 ;
       }
   }
+  .exportbtn{
+  margin: auto;
+}
+.exportbutton{
+  
+  height: 2rem;
+  background-color: #263440;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+    &:hover{
+        background-color: #4e0eff ;
+    }
+}
 .container{
         
         }
