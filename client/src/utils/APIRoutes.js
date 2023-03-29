@@ -14,4 +14,5 @@ export const getAllStudentRoute = `${host}/api/auth/student/get_all_student`;
 export const updateStudentRoute = `${host}/api/auth/student/update_student`;
 export const deleteStudentRoute = `${host}/api/auth/student/remove_student`;
 export const getStudentByIDRoute = `${host}/api/auth/student/get_student_byID`;
+export const getStudentByComputerCode = `${host}/api/auth/student/get_student_by_computer_code`;
 

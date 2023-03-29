@@ -48,7 +48,15 @@ exports.get_student_byID = async (req, res, next) => {
     next(error);
   }
 };
-
+exports.get_student_by_computer_code = async (req, res, next) => {
+  try {
+    const computer_code = req.body.computer_code;
+    const result = await Student.findOne({computer_code},{_id:1,student_name:1,computer_code:1,email:1,subjects:1,course:1,_class:1});
+    return res.json({result , status:true});
+  } catch (error) {
+    next(error);
+  }
+};
 exports.update_student = async (req, res, next) => {
   const { student_name, computer_code, email, course, subjects, _class , _id} =
     req.body;

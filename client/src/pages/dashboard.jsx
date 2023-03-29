@@ -69,10 +69,10 @@ export default function Dashboard() {
           <a href="/"><i className="ion-ios-briefcase-outline"></i> <span className=""><MdFingerprint className="ico" />Biometric</span></a>
           <ul className="nav-flyout">
             <li>
-              <a href="/"><i className="ion-ios-flame-outline"></i><MdPersonAdd className="ico" />Add Biometric</a>
+              <a href="/biometric/add_biometric"><i className="ion-ios-flame-outline"></i><MdPersonAdd className="ico" />Add Biometric</a>
             </li>
             <li>
-              <a href="/"><i className="ion-ios-lightbulb-outline"></i><FaEye className="ico" />View Biometric</a>
+              <a href="/biometric/view_biometric"><i className="ion-ios-lightbulb-outline"></i><FaEye className="ico" />View Biometric</a>
             </li>
           </ul>
         </li>

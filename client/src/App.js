@@ -11,6 +11,8 @@ import UpdateStudent from "./components/update_student";
 import DeleteStudent from './components/delete_student';
 import AddStudent from './pages/students/add_student';
 import GetAllStudent from "./pages/students/get_all_student";
+import AddBiometric from './pages/biometrics/add_biometric';
+import ViewBiometric from './pages/biometrics/view_biometric';
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
         <Route path='/student/get_all_student' element={<GetAllStudent/>}/>
         <Route path='/student/update_student' element={<UpdateStudent/>}/>
         <Route path='/student/delete_student' element={<DeleteStudent/>}/>
+        <Route path='/biometric/add_biometric' element={<AddBiometric/>}/>
+        <Route path='/biometric/view_biometric' element={<ViewBiometric/>}/>
       </Routes>
     </BrowserRouter>
   ); 
